@@ -1,0 +1,89 @@
+.searchsection {
+    padding: 0;
+    background: url('../images/search/mountain.jpg') no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.searchsection .container-fluid {
+    padding: 30px 7vw;
+    background: linear-gradient(to right, white,rgba(255, 255, 255, 0.838));
+}
+
+.searchsection .container-fluid .up .input {
+    position: relative;
+    width: 100%;
+}
+
+.searchsection .container-fluid .up .input input {
+    width: 100%;
+    height: 7vh;
+    padding: 0 20px;
+   
+}
+
+.searchsection .container-fluid .up .input button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    padding: 0 15px;
+    border: none;
+}
+
+.searchsection form .box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.searchsection form .box select {
+    height: 6vh;
+}
+ button{
+    background-color: var(--green-color);
+     border: none;
+     color: var(--white-color);
+     border-radius: 5px;
+     padding: 10px;
+}
+
+.searchsection .searchcol{
+    position: sticky;
+    top: 0;
+}
+
+/**/
+.searchsection .sliders{
+   
+    height: 75vh;
+    overflow: auto;
+}
+.searchsection .scale {
+    background-color: var(--white-color);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.searchsection .scale .u .image {
+    height: 150px;
+    width: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.searchsection .scale .u .image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.searchsection .scale .u span{
+    font-weight: 400;
+    font-size: 1.2rem;
+    
+}
+
+.searchsection .scale .u .demandn{
+    color: rgb(255, 111, 0);
+    font-size: 1.1rem;
+}
