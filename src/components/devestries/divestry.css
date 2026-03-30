@@ -1,0 +1,65 @@
+.divestrysection {
+    padding: 50px 7vw;
+    min-height: 100vh;
+}
+
+.divestrysection .l {
+    display: flex;
+    gap: 20px;
+}
+
+.divestrysection .l .up {
+    background-color: var(--green-color);
+    width: fit-content;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: white;
+}
+
+.divestrysection .three {
+    background-color: var(--white-color);
+    box-shadow: 0px 0px 5px 2px rgba(128, 128, 128, 0.293);
+    border-radius: 20px;
+}
+
+.divestrysection .three img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+}
+
+.divestrysection .three .btn {
+    border: rgba(75, 75, 75, 0.54) solid 1px;
+    border-radius: 10px;
+}
+
+.divestrysection .three2 .card {
+    border-radius: 20px;
+       box-shadow: 0px 0px 5px 2px rgba(128, 128, 128, 0.293);
+}
+
+
+
+
+
+.divestrysection .table table {
+       box-shadow: 0px 0px 5px 2px rgba(128, 128, 128, 0.293);
+    overflow: hidden;
+    width: 100%;
+    border-radius: 20px;
+}
+.divestrysection .table table tr{
+    border-bottom: rgba(101, 101, 101, 0.275) solid 1px;
+}
+
+.divestrysection .table table th {
+    background-color: rgba(255, 255, 255, 0.474);
+    text-align: center;
+    padding: 10px;
+}
+
+.divestrysection .table table td {
+      background-color: var(--white-color);
+    text-align: center;
+    padding: 20px;
+}

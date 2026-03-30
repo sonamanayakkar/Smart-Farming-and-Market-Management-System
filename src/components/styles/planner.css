@@ -1,0 +1,41 @@
+.plannersection {
+    /* border: red solid; */
+    padding: 50px 7vw;
+    min-height: 100vh;
+}
+
+.plannersection .up {
+    background-color: var(--green-color);
+    width: fit-content;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: white;
+}
+
+.plannersection .bottom .container a{
+    text-decoration: none;
+    color: black;
+}
+
+.plannersection .bottom .container .card {
+    border-radius: 20px;
+    cursor: pointer;
+
+}
+
+.plannersection .bottom .container .card img {
+    border: red solid;
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+}
+
+.plannersection .bottom .container .card .active {
+    background-color: rgba(0, 128, 0, 0.305);
+    padding: 2px 10px;
+    font-size: .9rem;
+    border-radius: 20px;
+    font-weight: 500;
+    color: green;
+    width: fit-content;
+}
