@@ -205,6 +205,33 @@ header .profile .four button {
     border: 1px solid white;
     width: fit-content;
 }
+.weather .locatinholder{
+    position: relative;
+}
+
+.weather .locatinholder .we{
+    position: absolute;
+    bottom: -40px;
+    left: 0%;
+    width: max-content;
+    background-color: rgb(255, 94, 0);
+    border-radius: 20px;
+    padding:2px 10px;
+    color: white;
+    font-weight: 600;
+    animation: liveweathernotify 1s ease infinite alternate-reverse;
+}
+
+@keyframes liveweathernotify {
+    from{
+        transform: translateY(-5px);
+    }
+    to{
+        transform: translateY(5px);
+    }
+}
+
+
 
 .weather .days {
     cursor: pointer;
@@ -267,7 +294,7 @@ header .profile .four button {
 
 @keyframes blink {
     0% {
-        box-shadow: 0px 0px 10px 5px red;
+        /* box-shadow: 0px 0px 10px 5px red; */
         transform: scale(1);
         background-color: rgb(255, 149, 0);
     }

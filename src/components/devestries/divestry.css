@@ -39,6 +39,7 @@
     padding: 10px;
     border-radius: 10px;
 }
+
 .three .card-text {
     color: rgb(65, 65, 65);
 }
@@ -83,16 +84,18 @@
 
 
 
-.divestrysection form input{
+.divestrysection form input {
     border: 1.6px solid rgba(116, 116, 116, 0.332);
     border-radius: 10px;
     height: 6vh;
 }
-.divestrysection form input:focus{
-       border: 1.6px solid rgba(19, 176, 2, 0.592);
+
+.divestrysection form input:focus {
+    border: 1.6px solid rgba(19, 176, 2, 0.592);
     outline: 4px solid rgba(0, 184, 0, 0.218);
 }
-.divestrysection form label{
+
+.divestrysection form label {
     color: rgb(66, 66, 66);
     font-weight: 600;
     font-size: .9rem;
@@ -120,7 +123,8 @@
 .divestrysection .table table tr {
     border-bottom: rgba(101, 101, 101, 0.275) solid 1px;
 }
-.divestrysection .table table tr:hover td{
+
+.divestrysection .table table tr:hover td {
     background-color: rgba(215, 215, 215, 0.184);
 }
 
@@ -269,11 +273,30 @@
     background-color: rgba(234, 234, 234, 0.77);
 }
 
-.divestrysection .popup .paid h4{
+.divestrysection .popup .paid h4 {
     color: rgb(1, 103, 1);
     font-weight: 800;
 }
-.divestrysection .popup .paid h5{
-   font-size: 1.1rem;
+
+.divestrysection .popup .paid h5 {
+    font-size: 1.1rem;
     font-weight: 700;
+}
+
+@media screen and (max-width:950px) {
+
+
+    .divestrysection {
+        padding: 40px 3vw;
+        min-height: 100vh;
+    }
+
+    .divestrysection .l {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+       
+    }
+
+
 }

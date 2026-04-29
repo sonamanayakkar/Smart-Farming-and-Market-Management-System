@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import districts from '../../public/district.json'
+import { apicall } from '../../handler/api'
 
 const Register = () => {
 
@@ -12,6 +13,8 @@ const Register = () => {
     const [inputs, setInputs] = useState({ details: { role: 'farmer', sts: true }, firstName: '', lastName: '', password: '', email: '', phone: '', district: 'Chennai' })
     const [errors, setErrors] = useState({})
 
+ 
+    
     let submit = (e) => {
         e.preventDefault()
         let err = {}
@@ -63,7 +66,7 @@ const Register = () => {
         if (Object.keys(err).length == 0) {
 
             let postdatatoserver = async () => {
-                const postingdata = await fetch('http://localhost:4500/api/v1/agreesmart/users/register', {
+                const postingdata = await fetch(`${apicall()}users/register`, {
                     method: 'POST',
                     headers: {
                         "content-type": "application/json"
@@ -157,7 +160,7 @@ const Register = () => {
                                 <h5>FARMER</h5>
                                 <p className='m-0'>Track my farm</p>
                             </div>
-                            <div className="choose w-50" style={inputs.details.sts == false ? { background: 'rgba(47, 161, 47, 0.32)', border: '2px solid rgb(4, 81, 4)' } : { background: 'none' }} onClick={(e) => setInputs({ ...inputs, details: { role: 'admin', sts: false } })}>
+                            <div className="choose w-50 d-none" style={inputs.details.sts == false ? { background: 'rgba(47, 161, 47, 0.32)', border: '2px solid rgb(4, 81, 4)' } : { background: 'none' }} onClick={(e) => setInputs({ ...inputs, details: { role: 'admin', sts: false } })}>
                                 <h5>🛡️</h5>
                                 <h5>ADMIN</h5>
                                 <p className='m-0'>Manage platform</p>

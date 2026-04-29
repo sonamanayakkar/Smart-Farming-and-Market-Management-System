@@ -3,7 +3,8 @@ import './divestry.css'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { getkey } from '../localStorage/currentUser.js'
-import {icon} from '../PlantIcons/icon.js'
+import { icon } from '../PlantIcons/icon.js'
+import { apicall } from '../../../handler/api.js'
 
 const Divestries = () => {
 
@@ -26,6 +27,7 @@ const Divestries = () => {
     const token = getkey()
 
 
+
     let addexpenses = (e) => {
         e.preventDefault()
 
@@ -35,7 +37,7 @@ const Divestries = () => {
 
             let postdata = async () => {
                 try {
-                    const expence = await fetch(`http://localhost:4500/api/v1/agreesmart/crops/profit/${cropid}`, {
+                    const expence = await fetch(`${apicall()}crops/profit/${cropid}`, {
                         method: 'PUT',
                         headers: { "content-type": "application/json" },
                         body: JSON.stringify({
@@ -65,7 +67,7 @@ const Divestries = () => {
             let updateData = async () => {
 
                 try {
-                    const expence = await fetch(`http://localhost:4500/api/v1/agreesmart/crops/profit/expense/${cropid}/${editid}`, {
+                    const expence = await fetch(`${apicall()}crops/profit/expense/${cropid}/${editid}`, {
                         method: 'PUT',
                         headers: { "content-type": "application/json" },
                         body: JSON.stringify({
@@ -78,6 +80,7 @@ const Divestries = () => {
                     const response = await expence.json()
                     const data = response.response.expences
 
+                    setrefresh(!refresh)
 
                 } catch (error) {
 
@@ -97,7 +100,7 @@ const Divestries = () => {
     let remove = (id) => {
         let removedata = async () => {
             try {
-                const expence = await fetch(`http://localhost:4500/api/v1/agreesmart/crops/profit/${cropid}/${id}`, {
+                const expence = await fetch(`${apicall()}crops/profit/${cropid}/${id}`, {
                     method: 'DELETE',
                     headers: { "content-type": "application/json" }
 
@@ -128,7 +131,7 @@ const Divestries = () => {
                 setrefresh(!refresh)
                 Swal.fire({
                     title: "Deleted!",
-                    text: "Your Expense has been Deleted.",
+                    text: "Expense deleted successfully.",
                     icon: "success"
                 });
             }
@@ -162,7 +165,7 @@ const Divestries = () => {
 
         let updateamounts = async () => {
             try {
-                await fetch(`http://localhost:4500/api/v1/agreesmart/crops/profit/saled/${cropid}`, {
+                await fetch(`${apicall()}crops/profit/saled/${cropid}`, {
                     method: "PUT",
                     headers: { 'Content-type': 'application/json' },
                     body: JSON.stringify({
@@ -209,7 +212,7 @@ const Divestries = () => {
 
         let labourHistory = async () => {
             try {
-                const history = await fetch(`http://localhost:4500/api/v1/agreesmart/crops/labour/history/${cropid}/${ids}`, {
+                const history = await fetch(`${apicall()}crops/labour/history/${cropid}/${ids}`, {
                     method: "GET",
                     headers: { "Content-type": "application/json", "Authorization": `Bearer ${token}` }
                 })
@@ -236,7 +239,7 @@ const Divestries = () => {
 
         let getdata = async () => {
             try {
-                const expence = await fetch(`http://localhost:4500/api/v1/agreesmart/crops/profit/${cropid}`, {
+                const expence = await fetch(`${apicall()}crops/profit/${cropid}`, {
                     method: 'GET',
                     headers: { "content-type": "application/json" }
 
@@ -289,25 +292,25 @@ const Divestries = () => {
         <>
             <section className='container-fluid divestrysection '>
 
-                <div className="l">
-                    <div className="up mb-5" style={{ cursor: 'pointer' }}>
+                <div className="l mb-4">
+                    <div className="up " style={{ cursor: 'pointer' }}>
                         <p className='m-0'>🌳 My Divestries</p>
                     </div>
-                    <div className="up mb-5 bg-white text-dark" style={{ cursor: 'pointer' }}>
+                    <div className="up  bg-white text-dark" style={{ cursor: 'pointer' }}>
                         <p className='m-0' onClick={attendance}>👷 Labour Attendance</p>
                     </div>
                 </div>
 
 
-                <div className="three py-3 px-5 mb-4">
-                    <div class=" d-flex align-items-center" >
+                <div className="three py-lg-3 px-lg-5 p-2 mb-4">
+                    <div className=" d-flex flex-lg-row flex-column align-items-center justify-content-center" >
                         <h1 className='h1 m-0'>{icon(cropname.cropName)}</h1>
-                        <div class="card-body ">
-                            <h5 class="card-title fs-4 fw-bold">{cropname.cropName}</h5>
-                            <p class="card-text">{cropname.area} Acres.started {cropname.date}</p>
+                        <div className="card-body ">
+                            <h5 className="card-title fs-4 fw-bold text-lg-start text-center">{cropname.cropName}</h5>
+                            <p className="card-text">{cropname.area} Acres.started {cropname.date}</p>
 
                         </div>
-                        <Link to='/planner' class="btn "><i class="fa-solid fa-arrow-left-long " ></i>  Back to Divestries</Link>
+                        <Link to='/planner' className="btn "><i className="fa-solid fa-arrow-left-long " ></i>  Back to Divestries</Link>
 
                     </div>
                 </div>
@@ -321,33 +324,33 @@ const Divestries = () => {
                 </div>
                 <div className="three2 py-3  mb-4">
                     <div className="container">
-                        <div className="row row-cols-lg-3">
+                        <div className="row row-cols-lg-3 row-cols-1 g-2">
 
                             <div className="col">
-                                <div class="card  c1" >
+                                <div className="card  c1" >
 
-                                    <div class="card-body">
-                                        <h6 class="card-title">TOTAL EXPENSE</h6>
+                                    <div className="card-body">
+                                        <h6 className="card-title">TOTAL EXPENSE</h6>
                                         <h3>₹{expenseamt.totalExpences}</h3>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="col ">
-                                <div class="card c2" >
+                                <div className="card c2" >
 
-                                    <div class="card-body">
-                                        <h6 class="card-title">SALE AMOUNT</h6>
+                                    <div className="card-body">
+                                        <h6 className="card-title">SALE AMOUNT</h6>
                                         <h3>₹ {finalAmt.saleAmount}</h3>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="col ">
-                                <div class="card c3" >
+                                <div className="card c3" >
 
-                                    <div class="card-body">
-                                        <h6 class="card-title">NET PROFIT / LOSS</h6>
+                                    <div className="card-body">
+                                        <h6 className="card-title">NET PROFIT / LOSS</h6>
                                         <h3>₹ {finalAmt.amount}</h3>
                                     </div>
                                 </div>
@@ -359,23 +362,23 @@ const Divestries = () => {
 
 
                 <div className="three py-3  p-4 mb-4">
-                    <form class="row g-3 " onSubmit={addexpenses}>
-                        <div class="col-md-3">
+                    <form className="row g-3 " onSubmit={addexpenses}>
+                        <div className="col-md-3">
 
-                            <label htmlFor="inputEmail4" class="form-label">DATE</label>
-                            <input type="date" class="form-control" id="inputEmail4" required value={inputs.date} onChange={(e) => setInputs({ ...inputs, date: e.target.value })} style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
+                            <label htmlFor="inputEmail4" className="form-label">DATE</label>
+                            <input type="date" className="form-control" id="inputEmail4" required value={inputs.date} onChange={(e) => setInputs({ ...inputs, date: e.target.value })} style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
                         </div>
-                        <div class="col-md-6">
-                            <label htmlFor="inputPassword4" class="form-label">EXPENSE ITEM</label>
-                            <input type="text" class="form-control" required id="inputPassword4" placeholder='e.g.Fertilizer,seeds,Labour' value={inputs.item} onChange={(e) => setInputs({ ...inputs, item: e.target.value })} style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
+                        <div className="col-md-6">
+                            <label htmlFor="inputPassword4" className="form-label">EXPENSE ITEM</label>
+                            <input type="text" className="form-control" required id="inputPassword4" placeholder='e.g.Fertilizer,seeds,Labour' value={inputs.item} onChange={(e) => setInputs({ ...inputs, item: e.target.value })} style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
                         </div>
-                        <div class="col-md-3  d-flex gap-3 align-items-center">
+                        <div className="col-md-3  d-flex gap-3 align-items-center">
                             <div className="box">
-                                <label htmlFor="inputPassword4" class="form-label">Amount ( ₹ )</label>
-                                <input type="number" class="form-control" required id="inputPassword4" placeholder='e.g.Amount' value={inputs.amount} onChange={(e) => setInputs({ ...inputs, amount: e.target.value })} style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
+                                <label htmlFor="inputPassword4" className="form-label">Amount ( ₹ )</label>
+                                <input type="number" className="form-control" required id="inputPassword4" placeholder='e.g.Amount' value={inputs.amount} onChange={(e) => setInputs({ ...inputs, amount: e.target.value })} style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
                             </div>
 
-                            <button type="submit" class=" mt-4" style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }}>+ Add</button>
+                            <button type="submit" className=" mt-4" style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }}>+ Add</button>
 
                         </div>
 
@@ -397,7 +400,7 @@ const Divestries = () => {
                                 <th>DATE</th>
                                 <th>ITEM</th>
                                 <th>AMOUNT</th>
-                                <th style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }}>ACTION</th>
+                                <th >ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -407,7 +410,7 @@ const Divestries = () => {
                                     <td>{ele.date}</td>
                                     <td>{ele.item}{(ele.item.includes('Labour')) ? (<i className="fa-solid fa-arrow-up-right-from-square ms-3" style={{ color: " rgb(0, 64, 255)" }} onClick={() => showlabour(ele.labourIds)}></i>) : ""}</td>
                                     <td>{ele.Amount}</td>
-                                    <td style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }}><i class="fa-solid fa-pencil me-2" onClick={() => edit(ele)}></i> <i class="fa-solid fa-xmark" onClick={() => remove(ele._id)}></i> </td>
+                                    <td><i className="fa-solid fa-pencil me-2" onClick={() => edit(ele)}  style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }}></i> <i className="fa-solid fa-xmark" onClick={() => remove(ele._id)}  style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }}></i> </td>
                                 </tr>
                             )) : (
                                 <tr>
@@ -423,12 +426,12 @@ const Divestries = () => {
                 </div>
 
                 <div className="three py-3  p-4 mb-4 " style={finalAmt.Isclosed ? { display: 'none' } : { display: "block" }}>
-                    <form class=" d-flex  flex-column " onSubmit={profit}>
-                        <label htmlFor="" style={{color:'rgb(19, 139, 1)'}}>💸 ENTER FINAL HARVEST SALE AMOUNT (₹)</label>
+                    <form className=" d-flex  flex-column " onSubmit={profit}>
+                        <label htmlFor="" style={{ color: 'rgb(19, 139, 1)' }}>💸 ENTER FINAL HARVEST SALE AMOUNT (₹)</label>
                         <div className="l d-flex mt-3">
 
                             <input type="number" className='w-75 ps-4' required placeholder='Enter Total Amount Received From Selling The Harvest' onChange={(e) => setSaleAmount(e.target.value)} />
-                            <button type='submit' className=''>Calculate Profit <i class="fa-solid fa-arrow-right"></i></button>
+                            <button type='submit' className=''>Calculate Profit <i className="fa-solid fa-arrow-right"></i></button>
 
                         </div>
 
@@ -446,7 +449,7 @@ const Divestries = () => {
                     <div className="b d-flex gap-3">
                         <div className="t">
                             <p>TOTAL EXPENSE</p>
-                            <h5 style={finalAmt.amount >= 0 ? { color: 'green' } : { color: 'red' }}>₹5200</h5>
+                            <h5 style={finalAmt.amount >= 0 ? { color: 'green' } : { color: 'red' }}>₹{finalAmt.totalExpences}</h5>
                         </div>
                         <div className="t">
                             <p>SALE AMOUNT</p>
@@ -479,7 +482,7 @@ const Divestries = () => {
                     <div className="inner">
                         <div className="header d-flex align-items-center justify-content-between mb-3">
                             <h5>👷 Labour Details</h5>
-                            <i class="fa-solid fa-xmark" onClick={() => setLabourtable(false)} style={{ cursor: "pointer" }}></i>
+                            <i className="fa-solid fa-xmark" onClick={() => setLabourtable(false)} style={{ cursor: "pointer" }}></i>
                         </div>
                         <div className="table  mb-4">
                             <table>

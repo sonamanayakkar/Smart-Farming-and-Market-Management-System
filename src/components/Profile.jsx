@@ -5,6 +5,7 @@ import districts from "../../public/district.json"
 import { getkey, setlocaldata, getlocaldata } from './localStorage/currentUser.js'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { apicall } from '../../handler/api.js'
 
 const Profile = ({ set }) => {
 
@@ -64,7 +65,7 @@ const Profile = ({ set }) => {
         if (Object.keys(err).length == 0) {
             let updateapi = async () => {
                 try {
-                    const update = await fetch('http://localhost:4500/api/v1/agreesmart/users/update', {
+                    const update = await fetch(`${apicall()}users/update`, {
                         method: "PUT",
                         headers: { "Authorization": `Bearer ${token}` },
                         body: formData
@@ -74,7 +75,7 @@ const Profile = ({ set }) => {
                     console.log(response);
 
                     setlocaldata('User', response.response)
-                    setRefresh(!refresh)
+                    setRefresh(prev => !prev)
 
                 }
                 catch (error) {

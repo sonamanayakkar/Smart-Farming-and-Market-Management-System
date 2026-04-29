@@ -66,21 +66,22 @@ section table .butt2 {
 
 .userpopup .inside .profile {
     /* background-color: rgb(38, 126, 212); */
-    background: linear-gradient(to right , rgb(19, 103, 187), rgb(78, 165, 252));
+    background: linear-gradient(to right, rgb(19, 103, 187), rgb(78, 165, 252));
     padding: 20px;
     position: relative;
     height: 15vh;
     border-radius: 0 0 20px 20px;
 }
-.userpopup .inside .profile h5{
+
+.userpopup .inside .profile h5 {
     color: rgba(255, 255, 255, 0.555);
     font-weight: 600;
     font-size: 1rem;
 }
 
-.userpopup .inside .profile .cross{
+.userpopup .inside .profile .cross {
     background-color: rgba(255, 255, 255, 0.348);
-    padding:5px 10px;
+    padding: 5px 10px;
     border-radius: 10px;
     width: fit-content;
     color: white;
@@ -118,27 +119,31 @@ section table .butt2 {
 }
 
 
-.userpopup .inside .contents{
+.userpopup .inside .contents {
     padding: 20px;
     background-color: white;
 }
 
-.userpopup .inside .emails{
+.userpopup .inside .emails {
     height: 21vh;
 
 }
-.userpopup .inside .emails .two2{
+
+.userpopup .inside .emails .two2 {
     align-self: flex-end;
 }
-.userpopup .inside .emails h3{
+
+.userpopup .inside .emails h3 {
     font-weight: 700;
     font-size: 1.5rem;
 }
-.userpopup .inside .emails p{
+
+.userpopup .inside .emails p {
     font-weight: 600;
-   color: rgb(103, 103, 103);
+    color: rgb(103, 103, 103);
 }
-.userpopup .inside .emails span{
+
+.userpopup .inside .emails span {
     background-color: rgba(0, 128, 0, 0.227);
     padding: 2px 10px;
     border-radius: 20px;
@@ -147,6 +152,7 @@ section table .butt2 {
     border: 1.5px solid green;
     font-size: .9rem;
 }
+
 .userpopup .inside .contents .three {
     display: flex;
     gap: 20px;
@@ -155,39 +161,56 @@ section table .butt2 {
     justify-content: center;
 }
 
-.userpopup .inside .contents .three .one{
+.userpopup .inside .contents .three .one {
     border: rgba(198, 198, 198, 0.463) 1.6px solid;
     border-radius: 10px;
     padding: 20px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-     align-items: center;
+    align-items: center;
     justify-content: center;
 }
-.userpopup .inside .contents .three .one h4{
+
+.userpopup .inside .contents .three .one h4 {
     font-weight: 800;
-   
+
 }
-.userpopup .inside .contents .three .one p{
+
+.userpopup .inside .contents .three .one p {
     font-weight: 600;
     color: rgb(101, 101, 101);
     font-size: .8rem;
 }
 
-.userpopup .inside .contents h5{
+.userpopup .inside .contents h5 {
     color: rgb(98, 98, 98);
     font-size: .9rem;
     font-weight: 700;
 }
 
-.userpopup .inside .contents .information p{
-     color: rgb(96, 96, 96);
+.userpopup .inside .contents .information p {
+    color: rgb(96, 96, 96);
     font-size: .8rem;
     font-weight: 600;
 }
-.userpopup .inside .contents .information h6{
-  
+
+.userpopup .inside .contents .information h6 {
+
     font-size: .9rem;
     font-weight: 700;
+}
+
+
+@media screen and (max-width:950px) {
+
+
+    .userpopup .inside {
+        position: fixed;
+        border-radius: 20px;
+        background-color: rgb(255, 255, 255);
+        width: 90%;
+        border: 1.6px solid white;
+        overflow: hidden;
+    }
 }

@@ -3,6 +3,7 @@ import './styles/profit.css'
 import { getkey } from './localStorage/currentUser.js'
 import { icon } from './PlantIcons/icon.js'
 import { topview } from './topView/topview.js'
+import {apicall} from '../../handler/api.js'
 
 const Profit = () => {
     let [crops, setCrops] = useState([])
@@ -45,7 +46,7 @@ const Profit = () => {
         let getdata = async () => {
             try {
 
-                const alldata = await fetch(`http://localhost:4500/api/v1/agreesmart/getallprofit?year=${filter.year}&status=${filter.status}&type=${filter.type}`, {
+                const alldata = await fetch(`${apicall()}getallprofit?year=${filter.year}&status=${filter.status}&type=${filter.type}`, {
                     method: 'GET',
                     headers: { "content-type": "application/json", "Authorization": `Bearer ${token}` }
 
@@ -233,7 +234,7 @@ const Profit = () => {
                 </div>
             </div>
 
-              <div className="topview" onClick={()=>topview(profitref)}><i class="fa-solid fa-arrow-up"></i></div>
+              <div className="topview" onClick={()=>topview(profitref)}><i className="fa-solid fa-arrow-up"></i></div>
 
         </section >
     )

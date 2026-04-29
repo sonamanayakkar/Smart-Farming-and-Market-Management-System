@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './style/profitreport.css'
+import { apicall } from '../../../handler/api'
 
 const Adminprofit = () => {
 
@@ -12,7 +13,7 @@ const Adminprofit = () => {
         let getTopUser = async () => {
             try {
 
-                const user = await fetch('http://localhost:4500/api/v1/agreesmart/getprofitOnly', {
+                const user = await fetch(`${apicall()}getprofitOnly`, {
                     method: "GET",
                     headers: { "Content-type": "application/json" }
                 })
@@ -51,7 +52,7 @@ const Adminprofit = () => {
 
 
     return (
-        <section className='dashboardsection profitreport container-fluid p-4'>
+        <section className='dashboardsection profitreport container-fluid p-0 p-lg-4'>
             <div className="header">
                 <div className="content">
                     <h5 className='fs-3 fw-bold'>📈 Profit Reports</h5>
@@ -101,18 +102,6 @@ const Adminprofit = () => {
                         </div>
                     </div>
 
-                    {/* <div class="col col-lg-3 col-md-6  col-12">
-                        <div className="c c4">
-                            <h4>🌾</h4>
-                            <h1 className=' fw-bold'>Onion</h1>
-                            <p>Top Crop</p>
-
-                            <div className="round">
-
-                            </div>
-                            <div className="icon"><i class="fa-solid fa-user-group"></i></div>
-                        </div>
-                    </div> */}
 
 
                 </div>

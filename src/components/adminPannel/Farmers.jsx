@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './style/farmers.css'
 import { h1 } from 'framer-motion/client'
+import { apicall } from '../../../handler/api'
 
 const Farmers = () => {
 
@@ -19,7 +20,7 @@ const Farmers = () => {
         let getTopUser = async () => {
             try {
 
-                const user = await fetch(`http://localhost:4500/api/v1/agreesmart/users/alluser?name=${filter}`, {
+                const user = await fetch(`${apicall()}users/alluser?name=${filter}`, {
                     method: "POST",
                     headers: { "Content-type": "application/json" }
                 })
@@ -60,7 +61,6 @@ const Farmers = () => {
 
 
     let view = (ele) => {
-        console.log(ele);
         
         setClose(true)
         setProfile({ ...profile, image: ele.profileImage,firstName:ele.firstName,lastName:ele.lastName, email:ele.email, joinyear: ele.date, district: ele.district, phone: ele.phoneNumber,profit:ele.profit })
@@ -69,7 +69,7 @@ const Farmers = () => {
     return (
 
         <>
-            <section className='dashboardsection container-fluid p-4'>
+            <section className='dashboardsection container-fluid p-0 p-lg-4'>
 
                 <h5>👥 All Farmers</h5>
                 <p>Manage all registered farmers</p>
@@ -77,7 +77,7 @@ const Farmers = () => {
                 <div className="filter d-flex flex-column gap-2 flex-lg-row justify-content-between align-itemslg--center">
                     <div className="l d-flex gap-3 align-items-center">
                         <div className="b">Users: {count.totalfarmers}</div>
-                        {/* <div className="b">Inactive: 2</div> */}
+                      
 
                     </div>
                     <div className="l">
@@ -140,12 +140,12 @@ const Farmers = () => {
                             <h5 className=''>FARMER PROFILE</h5>
                             <div className="image">
                                 <div className="img">
-                                    <img src={profile.image} alt="" />
+                                    <img src={profile.image || null} alt="" />
                                 </div>
 
                             </div>
                             <div className="cross" onClick={()=>setClose(false)}>
-                                <i class="fa-solid fa-xmark"></i>
+                                <i className="fa-solid fa-xmark"></i>
                             </div>
                         </div>
 
@@ -157,7 +157,7 @@ const Farmers = () => {
                                     <p>Member since {profile.joinyear}</p>
                                 </div>
                                 <div className="two">
-                                    <span><i class="fa-solid fa-check"></i> Active</span>
+                                    <span><i className="fa-solid fa-check"></i> Active</span>
                                 </div>
                             </div>
 

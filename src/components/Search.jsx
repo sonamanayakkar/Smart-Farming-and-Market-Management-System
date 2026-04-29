@@ -77,15 +77,15 @@ const Search = () => {
     return (
         <section className='searchsection container-fluid '>
 
-            <div class=" container-fluid">
-                <div class="row">
-                    <div class="col col-lg-4 border p-4 searchcol">
+            <div className=" container-fluid">
+                <div className="row">
+                    <div className="col col-lg-4 border p-4 searchcol">
                         <form action="" className='d-flex flex-column'>
                             <div className="up d-flex flex-column gap-4 my-4">
-                                <h4><i class="fa-solid fa-magnifying-glass"></i> Search Crops</h4>
+                                <h4><i className="fa-solid fa-magnifying-glass"></i> Search Crops</h4>
                                 <div className="input">
                                     <input type="text" placeholder='e.g. Onion,Tomato...' onChange={(e) => setFill({ ...fill, search: e.target.value })} />
-                                    {/* <button type='submit'><i class="fa-solid fa-magnifying-glass"></i></button> */}
+                                    {/* <button type='submit'><i className="fa-solid fa-magnifying-glass"></i></button> */}
                                 </div>
                             </div>
 
@@ -94,7 +94,7 @@ const Search = () => {
                         <form action="" onSubmit={filtering}>
                             <div className="bottom d-flex flex-column gap-4">
                                 <div className="box2 d-flex justify-content-between">
-                                    <h5 className='m-0'><i class="fa-solid fa-bars-staggered"></i> Filters</h5>
+                                    <h5 className='m-0'><i className="fa-solid fa-bars-staggered"></i> Filters</h5>
                                    
                                 </div>
                                 <div className="box">
@@ -116,7 +116,7 @@ const Search = () => {
 
 
                     </div>
-                    <div class="col col-lg-8 p-4 ">
+                    <div className="col col-lg-8 p-4 ">
                         <div className="fixed d-flex justify-content-between">
                             <h4>{filtered.length} markets Found </h4>
                         </div>
@@ -168,15 +168,15 @@ const Search = () => {
                             )) : (<h5>No Markets Found. Adjust your filters. </h5>)}
 
                            
-                            <div class="dot-spinner " style={loadercheck?{display:"none"}:{display:'flex'}}>
-                                <div class="dot-spinner__dot"></div>
-                                <div class="dot-spinner__dot"></div>
-                                <div class="dot-spinner__dot"></div>
-                                <div class="dot-spinner__dot"></div>
-                                <div class="dot-spinner__dot"></div>
-                                <div class="dot-spinner__dot"></div>
-                                <div class="dot-spinner__dot"></div>
-                                <div class="dot-spinner__dot"></div>
+                            <div className="dot-spinner " style={loadercheck?{display:"none"}:{display:'flex'}}>
+                                <div className="dot-spinner__dot"></div>
+                                <div className="dot-spinner__dot"></div>
+                                <div className="dot-spinner__dot"></div>
+                                <div className="dot-spinner__dot"></div>
+                                <div className="dot-spinner__dot"></div>
+                                <div className="dot-spinner__dot"></div>
+                                <div className="dot-spinner__dot"></div>
+                                <div className="dot-spinner__dot"></div>
                             </div>
                             {/* <div className="scale border d-flex justify-content-between align-items-center">
                                 <div className="u d-flex gap-3">

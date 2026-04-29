@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { setlocaldata } from "./localStorage/currentUser.js"
 
-
+import { apicall } from '../../handler/api.js'
 
 
 
@@ -50,7 +50,7 @@ const Login = () => {
 
         if (Object.keys(err).length == 0) {
             let fetchuserdata = async () => {
-                const user = await fetch('http://localhost:4500/api/v1/agreesmart/users/login', {
+                const user = await fetch(`${apicall()}users/login`, {
                     method: 'POST',
                     headers: {
                         "content-type": "application/json"
@@ -66,16 +66,18 @@ const Login = () => {
 
                 const getdata = await user.json()
 
-             
+
 
                 if (getdata.status) {
                     localStorage.setItem('token', JSON.stringify(getdata.response))
-                    // localStorage.setItem('User', JSON.stringify(getdata.response2))
-                    setlocaldata('User', getdata.response2)
+
+
 
                     if (getdata.response2.role == "farmer") {
+                        setlocaldata('User', getdata.response2)
                         return navigate('/Home')
                     }
+                    setlocaldata('Admin', getdata.response2)
                     navigate('/Admin/dashboard')
                 }
 

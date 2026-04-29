@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./style/dashboard.css"
 import { Link } from 'react-router-dom'
+import {apicall} from '../../../handler/api.js'
 
 const Dashboard = () => {
 
@@ -19,7 +20,7 @@ const Dashboard = () => {
         let getTopUser = async () => {
             try {
 
-                const user = await fetch('http://localhost:4500/api/v1/agreesmart/users/topUser', {
+                const user = await fetch(`${apicall()}users/topUser`, {
                     method: "GET",
                     headers: { "Content-type": "application/json" }
                 })
@@ -51,7 +52,7 @@ const Dashboard = () => {
     }, [])
 
     return (
-        <section className='dashboardsection container-fluid p-4'>
+        <section className='dashboardsection container-fluid p-0 p-lg-4'>
             <div className="header">
                 <div className="content">
                     <h5 className='fs-3 fw-bold'>Dashboard Overview</h5>

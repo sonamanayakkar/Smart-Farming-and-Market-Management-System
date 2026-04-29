@@ -21,7 +21,7 @@ const Header = ({ set }) => {
     let [navBg, setNavBg] = useState('')
 
     const location = useLocation().pathname
- 
+
 
     let navcolor = (url) => {
         if (url == location) {
@@ -88,8 +88,7 @@ const Header = ({ set }) => {
 
             const response = await weather.json()
             const response2 = await liveweather.json()
-            console.log(response2);
-            
+
 
 
             setLiveweather(response2)
@@ -232,11 +231,11 @@ const Header = ({ set }) => {
 
             <div className="weather">
 
-              
+
 
                 <div className="inside d-flex flex-column flex-lg-row  align-items-center justify-content-between">
                     <div className="two d-flex flex-column flex-lg-row align-items-center gap-3">
-                         <h5>{liveweather ? liveweather.name:''}</h5>
+                        <h5>{liveweather ? liveweather.name : ''}</h5>
                         <div className="image">
                             <img src={liveweather ? (`https://openweathermap.org/img/wn/${liveweather.weather[0].icon}@2x.png`) : sun} alt="" />
                         </div>
@@ -244,7 +243,7 @@ const Header = ({ set }) => {
                             <h1 className='fw-bold'>{liveweather ? (Math.round((liveweather.main.temp) - 273.15)) : null}<sup>0</sup>C</h1>
                             <p className='m-0 p'>{liveweather ? (liveweather.weather[0].description) : null}· Feels like {liveweather ? (Math.round((liveweather.main.temp) - 273.15 + 1)) : null}°C</p>
                         </div>
-                       
+
 
                     </div>
                     <div className="two d-flex gap-4">
@@ -274,11 +273,18 @@ const Header = ({ set }) => {
                 </div>
 
                 <div className="four d-flex  mt-2 gap-3">
-                    <div className="location" style={isclicked ? { animation: "none" } : { animation: "blink 1s linear infinite alternate-reverse" }}  onClick={currentLocation}>
-                        <p className='m-0' ><i className="fa-solid fa-location-crosshairs"></i> </p>
+
+                    <div className="locatinholder">
+                        <div className="location" style={isclicked ? { animation: "none" } : { animation: "blink 1s ease infinite alternate-reverse" }} onClick={currentLocation}>
+                            <p className='m-0' ><i className="fa-solid fa-location-crosshairs"></i> </p>
+
+                        </div>
+                        <div className="we" style={isclicked ? {display:'none'}:{display:'block'}}>
+                            <i className="fa-solid fa-hand-pointer"></i>  Get Live Weather
+                        </div>
                     </div>
                     <div className="days " onClick={() => setslide(!slide)}>
-                        <p className='m-0'>🗓️ Show More <i className="fa-solid fa-angle-down" style={slide ? { display: 'none' } : { display: 'inline-block' }}></i> <i className="fa-solid fa-angle-up" style={slide ? { display: 'inline-block' } : { display: 'none' }}></i></p>
+                        <p className='m-0 text-white'>🗓️ Show More <i className="fa-solid fa-angle-down" style={slide ? { display: 'none' } : { display: 'inline-block' }}></i> <i className="fa-solid fa-angle-up" style={slide ? { display: 'inline-block' } : { display: 'none' }}></i></p>
                     </div>
 
                 </div>
@@ -318,7 +324,7 @@ const Header = ({ set }) => {
 
                     </div>
                     <div className="b d-lg-flex justify-content-between align-items-center mt-3">
-                        <p> ⛅6 Hour Forecasting</p>
+                        <p> ⛅Today Forecasting</p>
                         <span onClick={() => setslide(false)}>Close <i className="fa-solid fa-xmark"></i></span>
                     </div>
                 </div>

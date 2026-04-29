@@ -101,6 +101,7 @@
     width: 450px;
     height: 1vh;
     border-radius: 10px;
+    overflow: hidden;
 }
 
 .profitsection .histories .lists .three .card-body .maxlevel .correctlevel {

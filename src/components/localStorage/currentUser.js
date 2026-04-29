@@ -2,6 +2,10 @@ export let getlocaldata = () => {
     let g = localStorage.getItem('User')
     return JSON.parse(g)
 }
+export let getlocaldata2 = () => {
+    let g = localStorage.getItem('Admin')
+    return JSON.parse(g)
+}
 export let setlocaldata = (name, value) => {
     localStorage.setItem(name, JSON.stringify(value))
 

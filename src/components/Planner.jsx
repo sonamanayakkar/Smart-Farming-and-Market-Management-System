@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { getkey } from './localStorage/currentUser.js'
 import { icon } from './PlantIcons/icon.js';
 import { topview } from './topView/topview.js';
-
+import { apicall } from '../../handler/api.js';
 
 const Planner = () => {
     let [cross, setCross] = useState(true);
@@ -22,7 +22,7 @@ const Planner = () => {
 
     const token = getkey()
 
-    const plannerref=useRef()
+    const plannerref = useRef()
 
     // CRUD operations
 
@@ -32,7 +32,7 @@ const Planner = () => {
 
         if (!editid) {
             let apipost = async () => {
-                const postingdata = await fetch('http://localhost:4500/api/v1/agreesmart/crops', {
+                const postingdata = await fetch(`${apicall()}crops`, {
                     method: "POST",
                     headers: { "content-type": "application/json", "Authorization": `Bearer ${token}` },
                     body: JSON.stringify({
@@ -74,7 +74,7 @@ const Planner = () => {
         }
         else {
             let apipost = async () => {
-                const postingdata = await fetch(`http://localhost:4500/api/v1/agreesmart/crops/edit/${editid}`, {
+                const postingdata = await fetch(`${apicall()}crops/edit/${editid}`, {
                     method: "PUT",
                     headers: { "content-type": "application/json" },
                     body: JSON.stringify({
@@ -113,7 +113,7 @@ const Planner = () => {
         const cropid = id
         let apipost = async () => {
             try {
-                const crop = await fetch(`http://localhost:4500/api/v1/agreesmart/crops/${cropid}`, {
+                const crop = await fetch(`${apicall()}crops/${cropid}`, {
                     method: "DELETE",
                     headers: { "content-type": "application/json" }
                 })
@@ -174,7 +174,7 @@ const Planner = () => {
 
     useEffect(() => {
         let apiget = async () => {
-            const getdata = await fetch(`http://localhost:4500/api/v1/agreesmart/crops`, {
+            const getdata = await fetch(`${apicall()}crops`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,  /// here i pass user token to server
@@ -237,7 +237,7 @@ const Planner = () => {
 
                                     <div className="col mt-2 cropbox " key={idx} >
                                         <div className="  card p-4" >
-                                            {/* <img src="..." class="card-img-top" alt="..." /> */}
+                                            {/* <img src="..." className="card-img-top" alt="..." /> */}
                                             <h1>{icon(ele.cropName)}</h1>
                                             <div className="card-body py-2 px-0">
                                                 <h5 className="card-title">{ele.cropName}</h5>
@@ -256,13 +256,13 @@ const Planner = () => {
                                         </div>
                                     </div>
 
-                                )) : (<Link to='/divestry' >
+                                )) : (
                                     <div className="col cropbox  mt-2">
                                         <div className="card p-4 d-flex align-items-center justify-content-center" >
                                             <h4 className='text-center'>No crops have been created yet!</h4>
                                         </div>
                                     </div>
-                                </Link>)}
+                                )}
 
 
 
@@ -282,7 +282,7 @@ const Planner = () => {
                     </div>
                 </div>
 
-                   <div className="topview" onClick={()=>topview(plannerref)}><i class="fa-solid fa-arrow-up"></i></div>
+                <div className="topview" onClick={() => topview(plannerref)}><i className="fa-solid fa-arrow-up"></i></div>
 
             </section>
 

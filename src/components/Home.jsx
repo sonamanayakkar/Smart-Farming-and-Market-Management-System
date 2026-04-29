@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { getkey } from './localStorage/currentUser.js'
 import { icon } from './PlantIcons/icon.js'
 import { topview } from './topView/topview.js'
-
+import { apicall } from '../../handler/api.js'
 
 
 const Home = () => {
@@ -21,7 +21,7 @@ const Home = () => {
 
     useEffect(() => {
         let apiget = async () => {
-            const getdata = await fetch(`http://localhost:4500/api/v1/agreesmart/crops`, {
+            const getdata = await fetch(`${apicall()}crops`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,  /// here i pass user token to server
@@ -55,7 +55,8 @@ const Home = () => {
             <div className="border container-fluid summary">
                 <div className="top d-flex justify-content-between align-item-center">
                     <div className="two d-flex  align-items-center gap-2" ><h2>📊</h2><h5 className='fw-bold'>Summary</h5></div>
-                    <a href="">View All <i className="fa-solid fa-arrow-right"></i></a>
+                  
+                    <Link to='/profit'>View All <i className="fa-solid fa-arrow-right"></i></Link>
                 </div>
                 <div className="bottom">
 
@@ -143,89 +144,24 @@ const Home = () => {
                                     </div>
                                 )
                             }
+                        
+                            
 
                         }) : (
                             <div className="col">
-                                <div className="box  p-3">
-                                    <h5 className='text-center'>Active Divestry not found <i class="fa-solid fa-file-circle-xmark"></i></h5>
+                                <div className="box p-3">
+                                    <h5 className='text-center'>Active Divestry not found <i className="fa-solid fa-file-circle-xmark"></i></h5>
 
                                 </div>
                             </div>
                         )}
-                        {/* <div className="col">
-                            <div className="box d-flex gap-4 align-items-center p-3">
-                                <img src="" alt="" />
-
-                                <div className="info">
-                                    <h4>Peanut</h4>
-                                    <p>4.5 Acres . Jun 2025</p>
-                                    <span>Active</span>
-                                </div>
-
-                                <div className="expense ms-auto">
-                                    <h5>₹5,200</h5>
-                                    <p>expenses</p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div className="box d-flex gap-4 align-items-center p-3">
-                                <img src="" alt="" />
-
-                                <div className="info">
-                                    <h4>Peanut</h4>
-                                    <p>4.5 Acres . Jun 2025</p>
-                                    <span>Active</span>
-                                </div>
-
-                                <div className="expense ms-auto">
-                                    <h5>₹5,200</h5>
-                                    <p>expenses</p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div className="box d-flex gap-4 align-items-center p-3">
-                                <img src="" alt="" />
-
-                                <div className="info">
-                                    <h4>Peanut</h4>
-                                    <p>4.5 Acres . Jun 2025</p>
-                                    <span>Active</span>
-                                </div>
-
-                                <div className="expense ms-auto">
-                                    <h5>₹5,200</h5>
-                                    <p>expenses</p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div className="box d-flex gap-4 align-items-center p-3">
-                                <img src="" alt="" />
-
-                                <div className="info">
-                                    <h4>Peanut</h4>
-                                    <p>4.5 Acres . Jun 2025</p>
-                                    <span>Active</span>
-                                </div>
-
-                                <div className="expense ms-auto">
-                                    <h5>₹5,200</h5>
-                                    <p>expenses</p>
-                                </div>
-
-                            </div>
-                        </div> */}
+                       
 
                     </div>
                 </div>
             </div>
 
-            <div className="topview" onClick={()=>topview(homeref)}><i class="fa-solid fa-arrow-up"></i></div>
+            <div className="topview" onClick={() => topview(homeref)}><i className="fa-solid fa-arrow-up"></i></div>
 
         </section>
 

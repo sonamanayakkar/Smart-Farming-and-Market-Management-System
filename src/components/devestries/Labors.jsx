@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Swal from 'sweetalert2'
-import {getkey} from '../localStorage/currentUser.js'
+import { getkey } from '../localStorage/currentUser.js'
+import { apicall } from '../../../handler/api.js'
 
 const Labors = () => {
 
@@ -24,7 +25,7 @@ const Labors = () => {
 
             let addlabour = async () => {
                 try {
-                    const labour = await fetch(`http://localhost:4500/api/v1/agreesmart/crops/labour/${cropid}`, {
+                    const labour = await fetch(`${apicall()}crops/labour/${cropid}`, {
                         method: "PUT",
                         headers: { "Content-type": "application/json", "Authorization": `Bearer ${token}` },
                         body: JSON.stringify(inputs)
@@ -38,7 +39,7 @@ const Labors = () => {
         } else {
             let updatelabour = async () => {
                 try {
-                    const labour = await fetch(`http://localhost:4500/api/v1/agreesmart/crops/labour/update/${cropid}/${editid}`, {
+                    const labour = await fetch(`${apicall()}crops/labour/update/${cropid}/${editid}`, {
                         method: "PUT",
                         headers: { "Content-type": "application/json", "Authorization": `Bearer ${token}` },
                         body: JSON.stringify(inputs)
@@ -60,7 +61,7 @@ const Labors = () => {
     let remove = (id) => {
         let removedata = async () => {
             try {
-                const expence = await fetch(`http://localhost:4500/api/v1/agreesmart/crops/labour/delete/${cropid}`, {
+                const expence = await fetch(`${apicall()}crops/labour/delete/${cropid}`, {
                     method: 'DELETE',
                     headers: { "content-type": "application/json", "Authorization": `Bearer ${token}` }
 
@@ -76,7 +77,7 @@ const Labors = () => {
 
         Swal.fire({
             title: "Are you sure?",
-            text: "You won't be able to revert this Expense!",
+            text: "You won't be able to revert this Labour!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -85,19 +86,20 @@ const Labors = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 await removedata()
-                setRefresh(!refresh)
+                setRefresh(prev => !prev)
                 Swal.fire({
                     title: "Deleted!",
-                    text: "Your Expense has been Deleted.",
+                    text: "The labour record has been deleted.",
                     icon: "success"
                 });
+
             }
         });
 
 
 
 
-        setRefresh(!refresh)
+
 
 
     }
@@ -111,11 +113,11 @@ const Labors = () => {
     let addtodivestry = () => {
 
         const labourIds = labourdata.map(ele => ele._id)
-       
+
 
         let postdata = async () => {
             try {
-                const expence = await fetch(`http://localhost:4500/api/v1/agreesmart/crops/profit/${cropid}`, {
+                const expence = await fetch(`${apicall()}crops/profit/${cropid}`, {
                     method: 'PUT',
                     headers: { "content-type": "application/json" },
                     body: JSON.stringify({
@@ -133,7 +135,7 @@ const Labors = () => {
 
                 if (expence.ok) {
                     console.log("Calling second API...");
-                    const makeempty = await fetch(`http://localhost:4500/api/v1/agreesmart/crops/labour/empty/${cropid}`, {
+                    const makeempty = await fetch(`${apicall()}crops/labour/empty/${cropid}`, {
                         method: 'DELETE',
                         headers: { "content-type": "application/json" }
 
@@ -168,8 +170,8 @@ const Labors = () => {
                 await postdata()
                 setRefresh(!refresh)
                 Swal.fire({
-                    title: "Deleted!",
-                    text: "Your Expense has been Deleted.",
+                    title: "Added!",
+                    text: "Labour Cost Added In Expense.",
                     icon: "success"
                 });
             }
@@ -184,23 +186,21 @@ const Labors = () => {
 
         let getdata = async () => {
             try {
-                const expence = await fetch(`http://localhost:4500/api/v1/agreesmart/crops/labour/${cropid}`, {
+                const expence = await fetch(`${apicall()}crops/labour/${cropid}`, {
                     method: 'GET',
                     headers: { "content-type": "application/json" }
 
                 })
                 const response = await expence.json()
 
-               
+                if (response.response.length > 0) {
+                    setLabourcost({ ...labourcost, length: response.response[0].labours.length || 0, total: response.response[0].totalsalary || 0 })
 
-                // setIscompleted(response.response[0].isCompleted)
-                
-                
-
-                setLabourcost({ ...labourcost, length:  response.response[0].labours.length, total: response.response[0].totalsalary })
-
-                setLabourdata(response.response[0].labours)
-
+                    setLabourdata(response.response[0].labours || [])
+                }
+                else {
+                    setLabourdata([])
+                }
 
 
             } catch (error) {
@@ -223,11 +223,11 @@ const Labors = () => {
     return (
         <section className='container-fluid divestrysection '>
 
-            <div className="l">
-                <div className="up mb-5 bg-white text-dark" style={{ cursor: 'pointer' }}>
+            <div className="l mb-4">
+                <div className="up  bg-white text-dark" style={{ cursor: 'pointer' }}>
                     <p className='m-0' onClick={divestry}>🌳 My Divestries</p>
                 </div>
-                <div className="up mb-5  " style={{ cursor: 'pointer' }}>
+                <div className="up   " style={{ cursor: 'pointer' }}>
                     <p className='m-0'>👷 Labour Attendance</p>
                 </div>
             </div>
@@ -243,23 +243,23 @@ const Labors = () => {
 
             <div className="three py-3  p-4 mb-4">
                 <h5 className='mb-3'>➕ Mark Attendance</h5>
-                <form class="row g-3 " onSubmit={submit}>
-                    <div class="col-md-3">
+                <form className="row g-3 " onSubmit={submit}>
+                    <div className="col-md-3">
 
-                        <label htmlFor="inputEmail4" class="form-label">DATE</label>
-                        <input type="date" class="form-control" id="inputEmail4" required value={inputs.date} onChange={(e) => setInputs({ ...inputs, date: e.target.value })} style={isCompleted ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
+                        <label htmlFor="inputEmail4" className="form-label">DATE</label>
+                        <input type="date" className="form-control" id="inputEmail4" required value={inputs.date} onChange={(e) => setInputs({ ...inputs, date: e.target.value })} style={isCompleted ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
                     </div>
-                    <div class="col-md-6">
-                        <label htmlFor="inputPassword4" class="form-label">LABOUR NAME</label>
-                        <input type="text" class="form-control" required id="inputPassword4" placeholder='e.g.Ravi kumar' value={inputs.labourName} onChange={(e) => setInputs({ ...inputs, labourName: e.target.value })} style={isCompleted ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
+                    <div className="col-md-6">
+                        <label htmlFor="inputPassword4" className="form-label">LABOUR NAME</label>
+                        <input type="text" className="form-control" required id="inputPassword4" placeholder='e.g.Ravi kumar' value={inputs.labourName} onChange={(e) => setInputs({ ...inputs, labourName: e.target.value })} style={isCompleted ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
                     </div>
-                    <div class="col-md-3  d-flex gap-3 align-items-center">
+                    <div className="col-md-3  d-flex gap-3 align-items-center">
                         <div className="box">
-                            <label htmlFor="inputPassword4" class="form-label">DAILY SALARY (₹)</label>
-                            <input type="number" class="form-control" required id="inputPassword4" placeholder='e.g.350' value={inputs.salary} onChange={(e) => setInputs({ ...inputs, salary: e.target.value })} style={isCompleted ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
+                            <label htmlFor="inputPassword4" className="form-label">DAILY SALARY (₹)</label>
+                            <input type="number" className="form-control" required id="inputPassword4" placeholder='e.g.350' value={inputs.salary} onChange={(e) => setInputs({ ...inputs, salary: e.target.value })} style={isCompleted ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
                         </div>
 
-                        <button type="submit" class=" mt-4" style={isCompleted ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }}>+ Add</button>
+                        <button type="submit" className=" mt-4" style={isCompleted ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }}>+ Add</button>
 
                     </div>
 
@@ -293,7 +293,7 @@ const Labors = () => {
                                 <td>{ele.date}</td>
                                 <td>{ele.labourName}</td>
                                 <td>{ele.salary}</td>
-                                <td ><i class="fa-solid fa-pencil me-2" onClick={() => update(ele)}></i> <i class="fa-solid fa-xmark" onClick={() => remove(ele._id)}></i> </td>
+                                <td className='action  justify-content-center  align-items-center h-100'><i className="fa-solid fa-pencil me-2" onClick={() => update(ele)}></i> <i className="fa-solid fa-xmark" onClick={() => remove(ele._id)}></i> </td>
                             </tr>
                         )) : (
                             <tr >
@@ -313,17 +313,17 @@ const Labors = () => {
 
 
             <div className="three py-3  p-4 mb-4 labourtotalsalary" style={labourdata.length > 0 ? { display: "block" } : { display: "none" }}>
-                <div className="u d-flex justify-content-between align-items-center">
+                <div className="u d-flex flex-lg-row flex-column justify-content-lg-between justify-content-center  align-items-center">
                     <div className="l_side">
                         <h5>💰 TOTAL LABOUR SALARY TO PAY</h5>
-                        <h1>₹ {labourcost.total}</h1>
+                        <h1 className='text-center text-lg-start'>₹ {labourcost.total}</h1>
                         <p>Present workers only · {labourcost.length} workers</p>
                     </div>
-                    <div className="l_side d-flex flex-column justify-content-center align-items-end">
-                        <p>Add this as Labour Cost
+                    <div className="l_side d-flex flex-column justify-content-center align-items-lg-end">
+                        <p className='text-center'>Add this as Labour Cost
                             to your Divestry expense</p>
 
-                        <button onClick={addtodivestry}><i class="fa-solid fa-arrow-right-long" ></i> Add to Divestry Expense</button>
+                        <button onClick={addtodivestry}><i className="fa-solid fa-arrow-right-long" ></i> Add to Divestry Expense</button>
                     </div>
                 </div>
             </div>
