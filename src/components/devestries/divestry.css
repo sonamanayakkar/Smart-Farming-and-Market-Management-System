@@ -17,8 +17,9 @@
 }
 
 .divestrysection .three {
+
     background-color: var(--white-color);
-    box-shadow: 0px 0px 5px 2px rgba(128, 128, 128, 0.293);
+    box-shadow: 0px 0px 5px 2px rgba(128, 128, 128, 0.171);
     border-radius: 20px;
 }
 
@@ -33,33 +34,246 @@
     border-radius: 10px;
 }
 
-.divestrysection .three2 .card {
+.three .h1 {
+    background-color: rgba(0, 128, 0, 0.129);
+    padding: 10px;
+    border-radius: 10px;
+}
+.three .card-text {
+    color: rgb(65, 65, 65);
+}
+
+.three2 .card {
     border-radius: 20px;
-       box-shadow: 0px 0px 5px 2px rgba(128, 128, 128, 0.293);
-}
-
-
-
-
-
-.divestrysection .table table {
-       box-shadow: 0px 0px 5px 2px rgba(128, 128, 128, 0.293);
-    overflow: hidden;
-    width: 100%;
-    border-radius: 20px;
-}
-.divestrysection .table table tr{
-    border-bottom: rgba(101, 101, 101, 0.275) solid 1px;
-}
-
-.divestrysection .table table th {
-    background-color: rgba(255, 255, 255, 0.474);
-    text-align: center;
+    box-shadow: 0px 0px 5px 2px rgba(128, 128, 128, 0.171);
     padding: 10px;
 }
 
+.three2 .card h6 {
+    color: gray;
+    font-size: .9rem;
+}
+
+.three2 .c1 {
+    border-bottom: rgb(202, 1, 1) solid 5px;
+}
+
+.three2 .c1 h3 {
+    color: rgb(202, 1, 1);
+    font-weight: 800;
+}
+
+.three2 .c2 {
+    border-bottom: rgb(3, 143, 24) solid 5px;
+}
+
+.three2 .c2 h3 {
+    color: rgb(3, 143, 24);
+    font-weight: 800;
+}
+
+.three2 .c3 {
+    border-bottom: rgb(0, 59, 207) solid 5px;
+}
+
+.three2 .c3 h3 {
+    color: rgb(0, 59, 207);
+    font-weight: 800;
+}
+
+
+
+.divestrysection form input{
+    border: 1.6px solid rgba(116, 116, 116, 0.332);
+    border-radius: 10px;
+    height: 6vh;
+}
+.divestrysection form input:focus{
+       border: 1.6px solid rgba(19, 176, 2, 0.592);
+    outline: 4px solid rgba(0, 184, 0, 0.218);
+}
+.divestrysection form label{
+    color: rgb(66, 66, 66);
+    font-weight: 600;
+    font-size: .9rem;
+}
+
+
+
+
+
+
+.divestrysection .table {
+
+    border-radius: 20px;
+    max-height: 60vh;
+    overflow: auto;
+}
+
+.divestrysection .table table {
+    box-shadow: 0px 0px 5px 2px rgba(128, 128, 128, 0.171);
+
+    width: 100%;
+    border-radius: 20px;
+}
+
+.divestrysection .table table tr {
+    border-bottom: rgba(101, 101, 101, 0.275) solid 1px;
+}
+.divestrysection .table table tr:hover td{
+    background-color: rgba(215, 215, 215, 0.184);
+}
+
+.divestrysection .table table th {
+    position: sticky;
+    top: 0;
+    background-color: rgb(23, 154, 2);
+    text-align: center;
+    padding: 10px;
+    color: white;
+}
+
 .divestrysection .table table td {
-      background-color: var(--white-color);
+    background-color: var(--white-color);
     text-align: center;
     padding: 20px;
+}
+
+
+.divestrysection .table table i {
+    cursor: pointer;
+}
+
+
+
+.divestrysection .profitrange {
+    background-color: rgb(215, 235, 215);
+    border: 1.7px solid rgb(1, 168, 1);
+}
+
+.divestrysection .profitrange .l {
+    background-color: rgba(0, 121, 0, 0.363);
+    overflow: hidden;
+    border-radius: 20px;
+
+}
+
+.divestrysection .profitrange h1 {
+    font-weight: 800;
+}
+
+.divestrysection .profitrange .con {
+    font-weight: 700;
+    color: green;
+}
+
+.divestrysection .profitrange .return {
+    margin-top: 10px;
+    font-weight: 700;
+    color: rgb(1, 167, 1);
+}
+
+.divestrysection .profitrange .b p {
+    color: gray;
+    font-weight: 700;
+    font-size: .8rem;
+}
+
+.divestrysection .profitrange .level {
+    /* background-color: rgb(0, 121, 0); */
+    height: 1.5vh;
+    width: 35%;
+    border-radius: 20px;
+
+}
+
+.divestrysection .closed {
+    background-color: rgb(255, 237, 205);
+    border: 2px solid orange;
+}
+
+.divestrysection .closed p {
+    font-weight: 500;
+    color: rgb(83, 83, 83);
+}
+
+
+.divestrysection .labourtotalsalary {
+    background-color: rgb(218, 241, 255);
+    border: 1.6px solid rgba(0, 126, 168, 0.378);
+}
+
+.divestrysection .labourtotalsalary button {
+    background-color: rgb(0, 109, 187);
+    font-size: .9rem;
+}
+
+.divestrysection .labourtotalsalary h5 {
+    color: rgb(0, 84, 153);
+    font-weight: 700;
+    font-size: .9rem;
+}
+
+.divestrysection .labourtotalsalary h1 {
+    color: rgb(1, 105, 190);
+    font-weight: 900;
+
+}
+
+.divestrysection .labourtotalsalary p {
+    color: rgb(83, 117, 132);
+
+
+}
+
+.divestrysection {
+    position: relative;
+}
+
+.divestrysection .popup {
+    background-color: rgba(0, 0, 0, 0.533);
+    backdrop-filter: blur(2px);
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 2000;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.divestrysection .popup .inner {
+    background-color: white;
+    padding: 30px;
+    width: 50%;
+    border-radius: 20px;
+}
+
+.divestrysection .popup .table {
+    width: 100%;
+    min-height: 50vh;
+    overflow: auto;
+}
+
+.divestrysection .popup button {
+    padding: 5px 20px;
+}
+
+.divestrysection .popup .paid {
+    border: 1.6px rgba(154, 154, 154, 0.221) solid;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: rgba(234, 234, 234, 0.77);
+}
+
+.divestrysection .popup .paid h4{
+    color: rgb(1, 103, 1);
+    font-weight: 800;
+}
+.divestrysection .popup .paid h5{
+   font-size: 1.1rem;
+    font-weight: 700;
 }

@@ -1,14 +1,12 @@
 header {
-     position: sticky;
+    position: sticky;
+    z-index: 1000;
     top: 0;
-    background: url('../images/nav.jpg') no-repeat;
-    background-position: center;
-    background-size: cover;
 }
 
 .header2 {
     display: flex;
-   
+
     justify-content: space-between;
     align-items: center;
     padding: 10px 25px;
@@ -19,12 +17,17 @@ header {
 
 header .logo {
     display: flex;
+    align-items: center;
     gap: 10px;
 }
-header .logo h1{
+
+header .logo h1 {
     color: green;
+    font-size: 2rem;
+    font-weight: 800;
 }
-header .logo h1 span{
+
+header .logo h1 span {
     color: rgb(27, 26, 26);
 }
 
@@ -47,11 +50,16 @@ header nav ul {
     gap: 40px;
 }
 
+header nav ul li{
+    padding: 2px 20px;
+    border-radius: 10px;
+}
+
 header nav ul a {
     text-decoration: none;
-    font-size: 1.2rem;
-    color: rgb(0, 0, 0);
-    font-weight: 500;
+    font-size: 1rem;
+    color: rgb(76, 76, 76);
+    font-weight: 700;
 }
 
 header .profile {
@@ -60,9 +68,338 @@ header .profile {
     align-items: center;
 }
 
-header .profile .image {
-    border: black solid;
+header .profile .me {
+    background-color: rgba(14, 131, 14, 0.129);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+header .profile .me .image {
+    border: rgba(66, 144, 57, 0.518) 1px solid;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0px 0px 5px 2px rgba(1, 92, 1, 0.377);
+}
+
+header .profile .me .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+header .profile .me .edit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    height: 100%;
+    padding: 0 20px;
+}
+
+header .profile .bell {
+    border: 2px solid rgba(128, 128, 128, 0.478);
+    border-radius: 50%;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: gold;
+}
+
+header .profile .name h5 {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+header .profile .name p {
+    font-size: .8rem;
+}
+
+header .profile .name span {
+    background-color: var(--green-color);
+    color: var(--white-color);
+    border-radius: 20px;
+    padding: 1px 10px;
+    font-size: .8rem;
+}
+
+
+header .profile .four button {
+
+    padding: 2px 10px;
+    background-color: transparent;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    color: rgb(0, 134, 20);
+}
+
+
+.weather {
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    padding: 15px 30px;
+    /* align-items: center; */
+    /* background: linear-gradient(to right, rgb(88, 155, 88), white); */
+    background-color: rgb(1, 113, 1);
+}
+
+.weather .inside {
+    background-color: rgba(255, 255, 255, 0.271);
+    padding: 20px;
+    border-radius: 20px;
+    border: rgba(255, 255, 255, 0.416) solid 1.5px;
+    width: 100%;
+}
+
+.weather .inside .image {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+}
+
+.weather .inside .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.weather .inside p {
+    color: rgb(229, 229, 229);
+    font-weight: 500;
+    font-size: .8rem;
+}
+
+.weather .inside .p {
+    font-size: 1rem;
+}
+
+.weather .inside h1 {
+    color: white;
+}
+
+.weather .inside h5 {
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.weather .four {
+
+    padding: 0 30px;
+}
+
+.weather .fourl {
+    padding: 0 30px;
+}
+
+.weather .location {
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.503);
+    padding: 5px 20px;
+    border: 1px solid white;
+    width: fit-content;
+}
+
+.weather .days {
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: rgba(95, 172, 93, 0.538);
+    padding: 5px 20px;
+    border: 1px solid rgb(45, 133, 49);
+}
+
+.whetherforcast {
+    background-color: rgb(1, 113, 1);
+
+}
+
+
+.whetherforcast .col .insidecol {
+    background-color: rgba(191, 191, 191, 0.44);
+    border: 1.6px rgba(217, 217, 217, 0.618) solid;
+    border-radius: 15px;
+    padding: 20px;
+    transition: .2s ease;
+}
+
+.whetherforcast .col .insidecol:hover {
+    transform: translateY(-20px);
+    box-shadow: 0px 0px 5px 2px white;
+    background-color: rgba(191, 191, 191, 0.064);
+}
+
+.whetherforcast .col img {
+
+    width: 60px;
+    height: 60px;
+}
+
+.whetherforcast .col p {
+    color: rgb(231, 231, 231);
+    font-weight: 600;
+}
+
+.whetherforcast .col span {
+    color: rgb(231, 231, 231);
+    font-size: .8rem;
+}
+
+.whetherforcast .b p {
+    color: rgb(224, 224, 224);
+}
+
+.whetherforcast .b span {
+    cursor: pointer;
+    border: rgba(255, 255, 255, 0.607) solid 1.5px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: rgb(224, 224, 224);
+    font-weight: 600;
+    font-size: .9rem;
+}
+
+
+@keyframes blink {
+    0% {
+        box-shadow: 0px 0px 10px 5px red;
+        transform: scale(1);
+        background-color: rgb(255, 149, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+
+
+
+@media screen and (max-width:950px) {
+    .homesection {
+        /* border: red solid; */
+        padding: 40px 5vw;
+    }
+
+    header nav {
+        height: fit-content;
+        display: none;
+    }
+
+    header .logo h1 {
+        color: green;
+        font-size: 1.3rem;
+        font-weight: 800;
+    }
+
+    .profile .name {
+        display: none;
+    }
+
+    header .profile .bell {
+        border: 2px solid rgba(128, 128, 128, 0.478);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: gold;
+        font-size: 1.3rem;
+    }
+
+    header .profile .four button {
+        padding: 2px 10px;
+        background-color: transparent;
+        color: black;
+        border-radius: 10px;
+        font-size: 1.5rem;
+        color: rgb(231, 0, 0);
+        display: none;
+    }
+
+    header .logo .image {
+        width: 34px;
+        height: 34px;
+        background: url(/Smart-Farming-and-Market-Management-System/public/logo.png) no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+
+    header .profile .me .image {
+        border: rgba(66, 144, 57, 0.518) 1px solid;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+    }
+
+    header .profile .me {
+        background-color: transparent;
+        border-radius: 20px;
+        padding: 0px;
+    }
+
+    .header2 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0px 2px 5px 2px rgba(128, 128, 128, 0.352);
+    }
+
+    header .profile {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .weather .four {
+        border: none;
+        padding: 0 30px;
+    }
+
+    .homesection .summary .bottom {
+        padding: 20px 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .homesection .summary {
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0px 0px 5px 1px rgba(88, 88, 88, 0.288);
+        border-radius: 20px;
+    }
+
+    .weather {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 15px ;
+        align-items: center;
+        /* background: linear-gradient(to right, rgb(88, 155, 88), white); */
+    }
+
+    header .profile .me .edit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        height: 100%;
+        padding: 0 0px;
+    }
+
+    .whetherforcast .col .insidecol:hover {
+        transform: translateY(0px);
+        box-shadow: 0px 0px 5px 2px white;
+        background-color: rgba(191, 191, 191, 0.064);
+    }
 }

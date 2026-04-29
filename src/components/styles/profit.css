@@ -1,0 +1,154 @@
+.profitsection .header p {
+    color: gray;
+    font-weight: 500;
+}
+
+.profitsection .three2 .c4 {
+    border-bottom: rgb(253, 131, 0) solid 5px;
+}
+
+.profitsection .c4 h3 {
+    color: rgb(253, 131, 0);
+    font-weight: 800;
+}
+
+.profitsection .filter {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.profitsection .smallbox {
+    border: 1.5px solid rgba(128, 128, 128, 0.504);
+    border-radius: 20px;
+    padding: 5px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: .9rem;
+    color: rgb(61, 61, 61);
+    cursor: pointer;
+    transition: .2s ease;
+}
+.profitsection .histories .filter .smallbox:hover{
+    background-color: rgba(0, 137, 0, 0.162);
+    color: rgb(2, 110, 2);
+     border: 1.5px solid rgb(1, 118, 3);
+}
+
+
+.profitsection .histories label {
+    font-weight: 500;
+}
+
+.profitsection .histories span {
+    font-weight: 700;
+    color: rgb(75, 75, 75);
+    font-size: .9rem;
+}
+
+.profitsection .histories input  {
+    border-radius: 10px;
+    /* border: gray solid 2px; */
+    padding: 0 20px;
+    height: 5vh;
+}
+.profitsection .histories input:focus{
+    outline: green solid 1.8px;
+}
+
+.profitsection .histories .ft {
+    padding: 0 20px 0 0;
+    flex-wrap: wrap;
+    border-right: 1.5px solid rgba(128, 128, 128, 0.458);
+}
+
+.profitsection .histories .status {
+    flex-wrap: wrap;
+}
+
+.profitsection .histories .lists .smallbox {
+    width: fit-content;
+    background-color: var(--darkgreen-color);
+    color: white;
+}
+
+.profitsection .histories .lists .three {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px 2px rgba(128, 128, 128, 0.332);
+}
+
+.profitsection .histories .lists .three h1 {
+   padding: 10px;
+   border-radius: 10px;
+   background-color: rgba(0, 128, 0, 0.129);
+}
+.profitsection .histories .lists .three span{
+    background-color: rgba(164, 164, 164, 0.321);
+    padding:2px 10px;
+    border-radius: 10px;
+}
+
+.profitsection .histories .lists .three .card-body {
+
+    width: fit-content;
+}
+
+.profitsection .histories .lists .three .card-body .maxlevel {
+    background-color: rgba(210, 210, 210, 0.61);
+    width: 450px;
+    height: 1vh;
+    border-radius: 10px;
+}
+
+.profitsection .histories .lists .three .card-body .maxlevel .correctlevel {
+    background-color: green;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.profitsection .histories .lists .three p{
+    color: rgb(100, 100, 100);
+    font-size: .9rem;
+}
+.profitsection .histories .lists .endcontent{
+   display: flex;
+   flex-direction: column;
+   align-items: end;
+}
+.profitsection .histories .lists .endcontent h4{
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.profitsection .histories .lists .endcontent p{
+   
+    font-weight: 600;
+}
+
+
+
+@media screen and (max-width:950px) {
+
+
+
+    section {
+        padding: 0 5vw;
+        background-color: rgb(243, 243, 243);
+    }
+
+    .profitsection .histories .ft {
+        padding: 0 20px 0 0;
+        flex-wrap: wrap;
+        border: none;
+    }
+
+    .profitsection .histories .lists .three .card-body .maxlevel {
+        background-color: rgba(128, 128, 128, 0.61);
+        width: 100%;
+        height: 1vh;
+        border-radius: 10px;
+    }
+
+}

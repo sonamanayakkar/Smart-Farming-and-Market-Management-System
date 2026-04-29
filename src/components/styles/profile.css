@@ -1,0 +1,161 @@
+.profilesection {
+    background-color: rgba(0, 0, 0, 0.564);
+    height: 100vh;
+    overflow-y: scroll;
+    position: absolute;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10000;
+
+}
+.swal2-container {
+  z-index: 10000 !important;
+}
+
+.profilesection::-webkit-scrollbar {
+    display: none;
+}
+
+.profilesection .inside {
+    width: 35%;
+    animation: slide .5s ease;
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(500px);
+    }
+
+    to {
+        transform: translateX(0px);
+    }
+}
+
+
+
+.profilesection .header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: rgb(0, 98, 0);
+    padding: 30px;
+}
+
+.profilesection .header button {
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.279);
+    border-radius: 15px;
+    padding: 5px 20px;
+    font-weight: 400;
+}
+
+.profilesection .body {
+    padding: 20px;
+    background-color: white;
+}
+
+.profilesection .body .editprofile .photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profilesection .body .editprofile .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.profilesection .body .editprofile .outer {
+
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.profilesection .body .editprofile .camera {
+    background-color: green;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.profilesection .body form .file {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.profilesection .body form .box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.profilesection .body form .box2 {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.profilesection .body form input,
+select {
+    height: 6vh;
+    padding: 0 20px;
+    border-radius: 10px;
+    border: 2px solid gray;
+}
+
+
+
+.profilesection .body form label {
+    font-weight: 600;
+    font-size: .8rem;
+}
+
+.profilesection .body form span {
+    color: red;
+}
+
+.profilesection .body form .box2 .two {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profilesection .body form .logoutbox button {
+    background-color: white;
+    border: 1px rgb(222, 0, 0) solid;
+    color: rgb(221, 2, 2);
+}
+
+.profilesection .body form .logoutbox label {
+
+    color: rgb(221, 2, 2);
+}
+
+
+
+
+@media screen and (max-width:950px) {
+    .profilesection .inside {
+        width: 100%;
+        animation: slide .5s ease;
+    }
+}

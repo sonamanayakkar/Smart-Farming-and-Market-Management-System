@@ -1,58 +1,41 @@
 .homesection {
-    /* border: red solid; */
     padding: 40px 7vw;
 }
 
-.homesection .weather {
-   
-    display: flex;
-    background-color: rgb(161, 197, 208);
-    justify-content: space-between;
-    border-radius: 20px;
-    overflow: hidden;
-
+.homesection a {
+    text-decoration: none;
+    color: var(--darkgreen-color);
+    font-weight: 600;
 }
 
 
-.homesection .weather .endside {
-    border-radius: 20px 0 0 20px;
-    background-color: white;
-    padding: 30px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 70%;
-}
 
-.homesection .weather  .startside1 {
-    padding: 30px;
-  
-}
 
-.homesection .weather .endside .startside {
-    border-right: 1px solid gray;
-    padding: 0 10px;
-
-}
-
-.homesection .weather .endside .startside3 {
-
-    border: none;
-}
 
 .homesection .slide {
     overflow: auto;
+    /* border: red solid; */
+}
+
+.homesection .demand a {
+    text-decoration: none;
+    color: var(--darkgreen-color);
+    font-weight: 600;
+}
+
+.homesection .slide::-webkit-scrollbar {
+    display: none;
 }
 
 .homesection .slide .lists {
     border-radius: 10px;
 
-    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.43);
+    box-shadow: 0px 0px 5px 2px rgba(81, 81, 81, 0.49);
 }
 
 .homesection .slide .lists .image {
     border-radius: 10px;
-    width: 300px;
+    width: 250px;
     height: 30vh;
     overflow: hidden;
 
@@ -148,10 +131,10 @@
 }
 
 .homesection .summary {
-    padding: 30px;
+    padding: 20px 30px;
     background-color: white;
-    box-shadow: 0px 0px 5px 1px rgba(88, 88, 88, 0.526);
-    border-radius: 10px;
+    box-shadow: 0px 0px 5px 1px rgba(88, 88, 88, 0.288);
+    border-radius: 20px;
 }
 
 .homesection .summary .bottom {
@@ -162,20 +145,59 @@
     gap: 40px;
 }
 
+.homesection .summary a {
+    text-decoration: none;
+    color: var(--darkgreen-color);
+    font-weight: 600;
+}
+
 .homesection .summary .bottom .three {
-    box-shadow: 0px 0px 5px 1px rgba(88, 88, 88, 0.526);
-    border-radius: 10px;
-    background: url('../images/home/tea.jpg') no-repeat;
-    background-position: center;
-    background-size: cover;
+    border-radius: 20px;
+    transition: .2s ease;
+}
 
+.homesection .summary .bottom .three:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 5px 2px rgba(128, 128, 128, 0.351);
+}
 
+.homesection .summary .bottom .t1 {
+    background-color: rgb(255, 235, 238);
+    border: 2px solid rgba(255, 100, 126, 0.701);
+}
+
+.homesection .summary .bottom .t1 .p h5 {
+    color: rgb(179, 6, 6);
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+.homesection .summary .bottom .t2 {
+    background-color: rgb(225, 255, 233);
+    border: 2px solid rgb(149, 255, 170);
+}
+
+.homesection .summary .bottom .t2 .p h5 {
+    color: var(--green-color);
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+.homesection .summary .bottom .t3 {
+    background-color: rgb(233, 248, 255);
+    border: 2px solid rgba(170, 238, 255, 0.799);
+}
+
+.homesection .summary .bottom .t3 .p h5 {
+    color: rgb(0, 44, 189);
+    font-weight: 800;
+    font-size: 1.5rem;
 }
 
 .homesection .summary .bottom .three .inner {
     padding: 20px;
     border-radius: 10px;
-    background: linear-gradient(to right, white, rgba(255, 255, 255, 0.738));
+
 }
 
 .homesection .summary .bottom .three i {
@@ -183,10 +205,73 @@
 }
 
 .homesection .summary .bottom .three h5 {
-    font-size: 2rem;
+    font-size: 1.2rem;
     font-weight: 600;
 }
 
 .homesection .summary .bottom .three .pfit {
     color: rgb(11, 107, 11);
+}
+
+.homesection .summary .bottom .three p {
+    font-weight: 500;
+    color: rgb(92, 92, 92);
+}
+
+
+/**/
+.homesection .store {
+    flex-wrap: wrap;
+}
+
+.homesection .active .box {
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px 1px rgba(88, 88, 88, 0.288);
+    padding: 20px 30px;
+    background-color: var(--white-color);
+    transition: .2s ease;
+}
+
+.homesection .active .box:hover {
+    transform: translateY(-5px);
+    outline: rgb(0, 179, 0) solid 1.3px;
+    box-shadow: 0px 0px 5px 2px rgba(0, 187, 0, 0.412);
+}
+
+.homesection .active .box h1 {
+
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(0, 128, 0, 0.129);
+}
+
+.homesection .active .box p {
+    color: rgb(83, 83, 83);
+}
+
+.homesection .active .box span {
+    background-color: rgb(194, 251, 194);
+    color: var(--darkgreen-color);
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: .9rem;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+
+.topview {
+    background-color: green;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: fixed;
+    right: 30px;
+    bottom: 100px;
+    cursor: pointer;
 }

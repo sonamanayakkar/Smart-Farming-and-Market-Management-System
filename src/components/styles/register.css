@@ -1,0 +1,269 @@
+.Registersection {
+    height: 100vh;
+    display: flex;
+    padding: 20px 150px;
+    background: url("../images/login/bg.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.landr {
+    width: 50%;
+    position: relative;
+
+}
+
+.language {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.551);
+    width: fit-content;
+    overflow: hidden;
+}
+
+.language .tamil1 {
+    background-color: rgba(255, 255, 255, 0.544);
+    font-size: .8rem;
+}
+
+.language .tamil {
+    font-size: .8rem;
+}
+
+.landr1 {
+    padding: 100px;
+    /* background: linear-gradient(to bottom, green, rgb(47, 161, 47)); */
+    background: linear-gradient(to bottom, rgba(0, 128, 0, 0.848), rgba(47, 161, 47, 0.853));
+
+}
+
+.landr1 .contents {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.Registersection .logo h1 {
+    color: rgba(255, 255, 255, 0.468);
+    font-weight: 900;
+}
+
+.Registersection .logo span {
+    color: white;
+}
+
+.Registersection .logo .image {
+    width: 60px;
+    height: 60px;
+    background: url('../../../public/logo.png') no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.Registersection .three .t {
+    background-color: rgba(255, 255, 255, 0.253);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1.6px solid rgba(255, 255, 255, 0.268);
+    transition: .2s ease-in;
+}
+.Registersection .three .t:hover{
+    transform: translateX(5px);
+      background-color: rgba(255, 255, 255, 0.451);
+}
+
+.Registersection .three h2 {
+    font-weight: 800;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.Registersection .three .t .image {
+    background-color: rgba(255, 255, 255, 0.405);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+
+}
+
+.Registersection .three .t p {
+    color: white;
+    font-weight: 600;
+}
+
+
+.Registersection .landr2 {
+
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    padding: 30px;
+    overflow: auto;
+    background-color: rgb(255, 255, 255);
+}
+
+.Registersection .landr2 .p {
+    color: gray;
+    font-weight: 500;
+}
+
+.Registersection .landr2 form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.Registersection .landr2 form .col {
+    width: 100%;
+}
+
+.Registersection .landr2 form .col .choose {
+    border: 2px solid rgba(107, 107, 107, 0.618);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.Registersection .landr2 form .box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.Registersection .landr2 form label {
+    font-weight: 500;
+    font-size: .8rem;
+    color: rgb(84, 84, 84);
+}
+
+.Registersection .landr2 form input {
+    height: 6vh;
+    width: 100%;
+    padding: 0 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 2px solid rgb(217, 217, 217);
+}
+
+.Registersection .landr2 form input:focus {
+    outline: none;
+}
+
+.Registersection .landr2 form .box select {
+    margin-top: 10px;
+    height: 5vh;
+    border-radius: 5px;
+}
+
+.Registersection .landr2 form .box .input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Registersection .landr2 form .box .fa-eye,
+.fa-eye-low-vision {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+}
+
+.Registersection .landr2 form .box2 .two {
+    width: 50%;
+}
+
+.Registersection .landr2 form button {
+    background-color: var(--darkgreen-color);
+    color: white;
+    font-weight: 600;
+    border-radius: 10px;
+    height: 6vh;
+}
+
+.Registersection .landr2 form a {
+    text-decoration: none;
+    color: var(--darkgreen-color);
+    font-weight: 600;
+}
+
+.Registersection .landr2 form span {
+    color: red;
+    font-weight: 500;
+    font-size: .9rem;
+}
+
+
+
+
+
+
+@media screen and (max-width:850px) {
+
+    .landr1 {
+        padding: 100px;
+        background: linear-gradient(to bottom, green, rgb(47, 161, 47));
+        background: linear-gradient(to bottom, rgba(0, 128, 0, 0.742), rgb(47, 161, 47));
+        display: none;
+    }
+
+    .Registersection {
+        height: auto;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 10px;
+        background: url(/Smart-Farming-and-Market-Management-System/src/components/images/login/bg.jpg) no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .landr {
+        width: 100%;
+        position: relative;
+    }
+
+    .Registersection .landr2 form input {
+        height: 6vh;
+        padding: 0 20px;
+        border-radius: 5px;
+        margin-top: 10px;
+        border: 2px solid rgb(217, 217, 217);
+    }
+
+    .Registersection .landr2 form .col .choose {
+        border: 2px solid rgba(107, 107, 107, 0.618);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .Registersection .landr2 {
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        padding: 20px;
+        overflow: auto;
+        background-color: rgb(255, 255, 255);
+    }
+
+
+
+
+}

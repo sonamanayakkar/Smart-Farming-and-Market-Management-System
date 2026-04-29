@@ -1,0 +1,48 @@
+.header2c {
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    display: none;
+}
+
+.container-fluid nav ul li {
+    list-style: none;
+}
+
+.container-fluid nav ul li a {
+    text-decoration: none;
+}
+
+.container-fluid nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.container-fluid nav {
+    padding: 15px 5px;
+}
+
+.container-fluid nav ul i {
+    font-size: 1.5rem;
+    color: green;
+}
+
+.container-fluid nav ul p {
+    color: rgb(41, 41, 41);
+    font-weight: 700;
+    font-size: .9rem;
+}
+
+
+
+
+@media screen and (max-width:950px) {
+    .header2c {
+        position: sticky;
+        bottom: 0;
+        background-color: white;
+        display: block;
+    }
+}

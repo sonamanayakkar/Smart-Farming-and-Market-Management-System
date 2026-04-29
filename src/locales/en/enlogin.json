@@ -1,0 +1,23 @@
+{
+    "welcome": "Welcome Back",
+    "signinText": "Sign in to your AgriSmart account",
+    "email": "Email",
+    "password": "Password",
+    "login": "Sign In",
+    "noAccount": "Don't have an account?",
+    "createAccount": "Create One",
+    "tagline": "Smart Farming For Every Farmer",
+    "description": "Track expenses, monitor market prices, and maximize your harvest profits",
+    "feature1": "Real-time market prices",
+    "feature2": "Divestry Planning & Expense Tracking",
+    "feature3": "Profit Calculator With Labour Salary",
+    "emailRequired": "Email is required",
+    "invalidEmail": "Invalid email",
+    "passwordRequired": "Password is required",
+    "passwordMin": "Minimum 8 characters",
+    "quicklogin": "Quick Login As",
+    "farmer": "Farmer",
+    "admin": "Admin",
+    "track": "Track my farm",
+    "manage": "Manage platform"
+}
