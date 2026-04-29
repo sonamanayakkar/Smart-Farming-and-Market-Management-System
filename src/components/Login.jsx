@@ -6,7 +6,7 @@ import { setlocaldata } from "./localStorage/currentUser.js"
 
 import { apicall } from '../../handler/api.js'
 
-
+import Swal from 'sweetalert2'
 
 const Login = () => {
 
@@ -66,7 +66,7 @@ const Login = () => {
 
                 const getdata = await user.json()
 
-
+                Swal.fire(getdata.message);
 
                 if (getdata.status) {
                     localStorage.setItem('token', JSON.stringify(getdata.response))
