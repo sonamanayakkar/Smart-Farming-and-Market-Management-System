@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './style/profitreport.css'
 import { apicall } from '../../../handler/api'
+import { autologout } from '../autologout/autoLogout'
 
 const Adminprofit = () => {
 
@@ -9,6 +10,8 @@ const Adminprofit = () => {
 
 
     useEffect(() => {
+
+        autologout()
 
         let getTopUser = async () => {
             try {

@@ -3,6 +3,7 @@ import './styles/search.css'
 import onion from './images/home/onion.jpg'
 import { data } from 'react-router-dom'
 import districts from '../../public/district.json'
+import { autologout } from './autologout/autoLogout'
 
 const Search = () => {
     let [datas, setDatas] = useState([])  // all data
@@ -15,7 +16,7 @@ const Search = () => {
 
     useEffect(() => {
 
-
+        autologout()
         let fetchdata = async () => {
             try {
                 let prices = await fetch('https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=579b464db66ec23bdd000001367747db4b0c4802691ea07f75878c91&offset=0&limit=1000&&filters[state]=kerala&format=csv&format=json')
@@ -95,7 +96,7 @@ const Search = () => {
                             <div className="bottom d-flex flex-column gap-4">
                                 <div className="box2 d-flex justify-content-between">
                                     <h5 className='m-0'><i className="fa-solid fa-bars-staggered"></i> Filters</h5>
-                                   
+
                                 </div>
                                 <div className="box">
                                     <label htmlFor="">District</label>
@@ -167,8 +168,8 @@ const Search = () => {
                                 </div>
                             )) : (<h5>No Markets Found. Adjust your filters. </h5>)}
 
-                           
-                            <div className="dot-spinner " style={loadercheck?{display:"none"}:{display:'flex'}}>
+
+                            <div className="dot-spinner " style={loadercheck ? { display: "none" } : { display: 'flex' }}>
                                 <div className="dot-spinner__dot"></div>
                                 <div className="dot-spinner__dot"></div>
                                 <div className="dot-spinner__dot"></div>

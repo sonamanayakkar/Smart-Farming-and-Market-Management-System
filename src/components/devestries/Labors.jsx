@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { getkey } from '../localStorage/currentUser.js'
 import { apicall } from '../../../handler/api.js'
+import { autologout } from '../autologout/autoLogout.js'
 
 const Labors = () => {
 
@@ -183,6 +184,8 @@ const Labors = () => {
 
 
     useEffect(() => {
+
+        autologout()
 
         let getdata = async () => {
             try {

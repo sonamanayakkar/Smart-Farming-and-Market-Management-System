@@ -8,6 +8,7 @@ import { getkey } from './localStorage/currentUser.js'
 import { icon } from './PlantIcons/icon.js'
 import { topview } from './topView/topview.js'
 import { apicall } from '../../handler/api.js'
+import { autologout } from './autologout/autoLogout.js'
 
 
 const Home = () => {
@@ -20,6 +21,8 @@ const Home = () => {
 
 
     useEffect(() => {
+        autologout()
+
         let apiget = async () => {
             const getdata = await fetch(`${apicall()}crops`, {
                 method: "GET",
@@ -55,7 +58,7 @@ const Home = () => {
             <div className="border container-fluid summary">
                 <div className="top d-flex justify-content-between align-item-center">
                     <div className="two d-flex  align-items-center gap-2" ><h2>📊</h2><h5 className='fw-bold'>Summary</h5></div>
-                  
+
                     <Link to='/profit'>View All <i className="fa-solid fa-arrow-right"></i></Link>
                 </div>
                 <div className="bottom">
@@ -126,16 +129,16 @@ const Home = () => {
                             if (ele.status != "Completed") {
                                 return (
                                     <div className="col" key={idx}>
-                                        <div className="box d-flex gap-4 align-items-center p-3">
+                                        <div className="box d-flex flex-lg-row flex-column gap-4  align-items-center p-3">
                                             <h1>{icon(ele.cropName)}</h1>
 
-                                            <div className="info">
-                                                <h5 className='fw-bold'>{ele.cropName}</h5>
+                                            <div className="info d-flex  flex-column   align-items-center">
+                                                <h5 className='fw-bold text-center'>{ele.cropName}</h5>
                                                 <p>{ele.area} Acres . {ele.startDate}</p>
-                                                <span style={ele.status == 'active' ? { backgroundColor: ' rgba(0, 179, 0, 0.31)' } : { backgroundColor: ' rgba(255, 119, 0, 0.19)', color: 'rgb(255, 77, 0)' }}>{ele.status}</span>
+                                                <span className='' style={ele.status == 'active' ? { backgroundColor: ' rgba(0, 179, 0, 0.31)' } : { backgroundColor: ' rgba(255, 119, 0, 0.19)', color: 'rgb(255, 77, 0)' }}>{ele.status}</span>
                                             </div>
 
-                                            <div className="expense ms-auto">
+                                            <div className="expense ms-lg-auto">
                                                 <h5>₹{ele.Expences}</h5>
                                                 <p>expenses</p>
                                             </div>
@@ -144,8 +147,8 @@ const Home = () => {
                                     </div>
                                 )
                             }
-                        
-                            
+
+
 
                         }) : (
                             <div className="col">
@@ -155,7 +158,7 @@ const Home = () => {
                                 </div>
                             </div>
                         )}
-                       
+
 
                     </div>
                 </div>

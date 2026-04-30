@@ -260,7 +260,15 @@
         padding: 20px;
         overflow: auto;
         background-color: rgb(255, 255, 255);
+        border-radius: 20px;
     }
+
+     .Registersection h5{
+        font-size: 1rem;
+     }
+     .Registersection p{
+        font-size: .8rem;
+     }
 
 
 

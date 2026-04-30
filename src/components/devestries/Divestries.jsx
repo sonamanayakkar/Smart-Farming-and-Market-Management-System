@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 import { getkey } from '../localStorage/currentUser.js'
 import { icon } from '../PlantIcons/icon.js'
 import { apicall } from '../../../handler/api.js'
+import { autologout } from '../autologout/autoLogout.js'
 
 const Divestries = () => {
 
@@ -236,6 +237,7 @@ const Divestries = () => {
 
 
     useEffect(() => {
+        autologout()
 
         let getdata = async () => {
             try {
@@ -400,7 +402,7 @@ const Divestries = () => {
                                 <th>DATE</th>
                                 <th>ITEM</th>
                                 <th>AMOUNT</th>
-                                <th >ACTION</th>
+                                <th>ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -410,7 +412,13 @@ const Divestries = () => {
                                     <td>{ele.date}</td>
                                     <td>{ele.item}{(ele.item.includes('Labour')) ? (<i className="fa-solid fa-arrow-up-right-from-square ms-3" style={{ color: " rgb(0, 64, 255)" }} onClick={() => showlabour(ele.labourIds)}></i>) : ""}</td>
                                     <td>{ele.Amount}</td>
-                                    <td><i className="fa-solid fa-pencil me-2" onClick={() => edit(ele)}  style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }}></i> <i className="fa-solid fa-xmark" onClick={() => remove(ele._id)}  style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }}></i> </td>
+                                    <td style={{  height: '100%' }}>
+
+                                        <div className="wrapers">
+                                            <i className="fa-solid fa-pencil " onClick={() => edit(ele)} style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }}></i>
+                                            <i className="fa-solid fa-xmark" onClick={() => remove(ele._id)} style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }}></i>
+                                        </div>
+                                    </td>
                                 </tr>
                             )) : (
                                 <tr>
@@ -430,7 +438,7 @@ const Divestries = () => {
                         <label htmlFor="" style={{ color: 'rgb(19, 139, 1)' }}>💸 ENTER FINAL HARVEST SALE AMOUNT (₹)</label>
                         <div className="l d-flex mt-3">
 
-                            <input type="number" className='w-75 ps-4' required placeholder='Enter Total Amount Received From Selling The Harvest' onChange={(e) => setSaleAmount(e.target.value)} />
+                            <input type="number" className='w-lg-75 ps-4' required placeholder='Enter Total Amount Received From Selling The Harvest' onChange={(e) => setSaleAmount(e.target.value)} />
                             <button type='submit' className=''>Calculate Profit <i className="fa-solid fa-arrow-right"></i></button>
 
                         </div>

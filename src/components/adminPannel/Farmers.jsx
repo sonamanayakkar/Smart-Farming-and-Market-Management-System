@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './style/farmers.css'
 import { h1 } from 'framer-motion/client'
 import { apicall } from '../../../handler/api'
+import { autologout } from '../autologout/autoLogout'
 
 const Farmers = () => {
 
@@ -13,9 +14,9 @@ const Farmers = () => {
     let [close, setClose] = useState(false)
 
 
-
-
     useEffect(() => {
+
+        autologout()
 
         let getTopUser = async () => {
             try {

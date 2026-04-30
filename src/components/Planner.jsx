@@ -10,6 +10,7 @@ import { getkey } from './localStorage/currentUser.js'
 import { icon } from './PlantIcons/icon.js';
 import { topview } from './topView/topview.js';
 import { apicall } from '../../handler/api.js';
+import { autologout } from './autologout/autoLogout.js';
 
 const Planner = () => {
     let [cross, setCross] = useState(true);
@@ -173,6 +174,9 @@ const Planner = () => {
 
 
     useEffect(() => {
+
+        autologout()
+
         let apiget = async () => {
             const getdata = await fetch(`${apicall()}crops`, {
                 method: "GET",
@@ -182,7 +186,7 @@ const Planner = () => {
                 },
             })
             const response = await getdata.json()
-
+            
 
             let cropsdata = response.response[0].lists
 
@@ -231,6 +235,15 @@ const Planner = () => {
                         <div className="container">
                             <div className="row row-cols-lg-4 row-cols-1">
 
+                                  <div className="col cropbox mt-2" onClick={() => setCross(ele => false)}>
+                                    <div className="card card2 p-4 d-flex align-items-center justify-content-center" style={{ cursor: "pointer" }}>
+                                        <div className="new">
+                                            +
+                                        </div>
+                                        <h6 className='mt-2'>New Divestry</h6>
+                                    </div>
+                                </div>
+
                                 {crops && crops.length > 0 ? crops.map((ele, idx) =>
 
                                 (
@@ -267,14 +280,7 @@ const Planner = () => {
 
 
 
-                                <div className="col cropbox mt-2" onClick={() => setCross(ele => false)}>
-                                    <div className="card card2 p-4 d-flex align-items-center justify-content-center" style={{ cursor: "pointer" }}>
-                                        <div className="new">
-                                            +
-                                        </div>
-                                        <h6 className='mt-2'>New Divestry</h6>
-                                    </div>
-                                </div>
+                              
 
 
                             </div>

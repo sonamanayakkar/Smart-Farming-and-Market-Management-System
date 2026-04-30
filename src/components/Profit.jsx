@@ -4,6 +4,7 @@ import { getkey } from './localStorage/currentUser.js'
 import { icon } from './PlantIcons/icon.js'
 import { topview } from './topView/topview.js'
 import {apicall} from '../../handler/api.js'
+import { autologout } from './autologout/autoLogout.js'
 
 const Profit = () => {
     let [crops, setCrops] = useState([])
@@ -42,6 +43,7 @@ const Profit = () => {
     }
 
     useEffect(() => {
+        autologout()
 
         let getdata = async () => {
             try {

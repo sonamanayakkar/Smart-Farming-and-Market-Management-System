@@ -240,7 +240,7 @@ const Header = ({ set }) => {
                             <img src={liveweather ? (`https://openweathermap.org/img/wn/${liveweather.weather[0].icon}@2x.png`) : sun} alt="" />
                         </div>
                         <div className="content">
-                            <h1 className='fw-bold'>{liveweather ? (Math.round((liveweather.main.temp) - 273.15)) : null}<sup>0</sup>C</h1>
+                            <h1 className='fw-bold text-md-start text-center'>{liveweather ? (Math.round((liveweather.main.temp) - 273.15)) : null}<sup>0</sup>C</h1>
                             <p className='m-0 p'>{liveweather ? (liveweather.weather[0].description) : null}· Feels like {liveweather ? (Math.round((liveweather.main.temp) - 273.15 + 1)) : null}°C</p>
                         </div>
 
@@ -291,7 +291,7 @@ const Header = ({ set }) => {
 
             </div>
 
-            <div className="container-fluid  whetherforcast " style={slide ? { transform: 'translateY(0px)', opacity: 1, transition: '.2s ease' } : { transform: 'translateY(-2000px)', position: 'absolute', opacity: 0, transition: '.2s ease' }}>
+            <div className="container-fluid  whetherforcast " style={slide ? { transform: 'translateY(0px)', opacity: 1, transition: '.2s ease' } : { transform: 'translateY(-5000px)', position: 'absolute', opacity: 0, transition: '.2s ease' }}>
                 <div className="container py-4">
                     <div className="row g-2 row-cols-lg-6 row-cols-1 row-cols-md-2">
 

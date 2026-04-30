@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "./style/dashboard.css"
 import { Link } from 'react-router-dom'
 import {apicall} from '../../../handler/api.js'
+import { autologout } from '../autologout/autoLogout.js'
 
 const Dashboard = () => {
 
@@ -16,6 +17,7 @@ const Dashboard = () => {
     
 
     useEffect(() => {
+        autologout()
 
         let getTopUser = async () => {
             try {
