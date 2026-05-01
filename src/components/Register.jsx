@@ -115,10 +115,10 @@ const Register = () => {
         return (
 
             <div className="h">
-                <div class="hacker-loader">
-                    <div class="binary-ring"></div>
-                    <div class="core"></div>
-                    <div class="binary-digits">
+                <div className="hacker-loader">
+                    <div className="binary-ring"></div>
+                    <div className="core"></div>
+                    <div className="binary-digits">
                         <span>0</span>
                         <span>1</span>
                         <span>0</span>
@@ -128,7 +128,7 @@ const Register = () => {
                         <span>1</span>
                         <span>0</span>
                     </div>
-                    <div class="loading-text">Registering...</div>
+                    <div className="loading-text">Registering...</div>
                 </div>
             </div>
 

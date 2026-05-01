@@ -103,10 +103,10 @@ const Login = () => {
         return (
 
             <div className="h">
-                <div class="hacker-loader">
-                    <div class="binary-ring"></div>
-                    <div class="core"></div>
-                    <div class="binary-digits">
+                <div className="hacker-loader">
+                    <div className="binary-ring"></div>
+                    <div className="core"></div>
+                    <div className="binary-digits">
                         <span>0</span>
                         <span>1</span>
                         <span>0</span>
@@ -116,7 +116,7 @@ const Login = () => {
                         <span>1</span>
                         <span>0</span>
                     </div>
-                    <div class="loading-text">Logging in...</div>
+                    <div className="loading-text">Logging in...</div>
                 </div>
             </div>
 
