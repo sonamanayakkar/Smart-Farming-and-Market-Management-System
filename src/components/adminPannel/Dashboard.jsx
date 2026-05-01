@@ -91,18 +91,7 @@ const Dashboard = () => {
                             <div className="icon"><i className="fa-solid fa-seedling"></i></div>
                         </div>
                     </div>
-                    <div className="col col-lg-3 col-md-6 col-12">
-                        <div className="c c3">
-                            <h5>TOTAL FARMERS</h5>
-                            <h1 className='text-white fw-bold'>1,234</h1>
-                            <span>+24 this week</span>
-
-                            <div className="round">
-
-                            </div>
-                            <div className="icon"><i className="fa-solid fa-user-group"></i></div>
-                        </div>
-                    </div>
+                    
                     <div className="col col-lg-3 col-md-6 col-12">
                         <div className="c c4">
                             <h5>PLATFORM PROFITS</h5>
