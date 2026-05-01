@@ -16,8 +16,11 @@ const Login = () => {
 
     const [inputType, setInputType] = useState({ type: 'password', condition: false })
 
+    const [loader, setLoader] = useState(null)
+
 
     let submit = (e) => {
+
 
         e.preventDefault()
         let err = {}
@@ -49,6 +52,7 @@ const Login = () => {
         setErrors(err)
 
         if (Object.keys(err).length == 0) {
+            setLoader(true)
             let fetchuserdata = async () => {
                 const user = await fetch(`${apicall()}users/login`, {
                     method: 'POST',
@@ -65,7 +69,7 @@ const Login = () => {
                 )
 
                 const getdata = await user.json()
-
+                setLoader(false)
                 Swal.fire(getdata.message);
 
                 if (getdata.status) {
@@ -95,6 +99,35 @@ const Login = () => {
 
     }
 
+    if (loader == true) {
+        return (
+
+            <div className="h">
+                <div class="hacker-loader">
+                    <div class="binary-ring"></div>
+                    <div class="core"></div>
+                    <div class="binary-digits">
+                        <span>0</span>
+                        <span>1</span>
+                        <span>0</span>
+                        <span>1</span>
+                        <span>1</span>
+                        <span>0</span>
+                        <span>1</span>
+                        <span>0</span>
+                    </div>
+                    <div class="loading-text">Logging in...</div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        )
+    }
 
     return (
         <div className='Registersection'>

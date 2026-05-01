@@ -13,8 +13,8 @@ const Register = () => {
     const [inputs, setInputs] = useState({ details: { role: 'farmer', sts: true }, firstName: '', lastName: '', password: '', email: '', phone: '', district: 'Chennai' })
     const [errors, setErrors] = useState({})
 
- 
-    
+    const [loader, setLoader] = useState(null)
+
     let submit = (e) => {
         e.preventDefault()
         let err = {}
@@ -64,6 +64,7 @@ const Register = () => {
 
         setErrors(err)
         if (Object.keys(err).length == 0) {
+            setLoader(true)
 
             let postdatatoserver = async () => {
                 const postingdata = await fetch(`${apicall()}users/register`, {
@@ -84,6 +85,7 @@ const Register = () => {
                 })
 
                 const response = await postingdata.json();
+                setLoader(false)
                 alert(response.message)
 
                 if (response.status) {
@@ -106,6 +108,37 @@ const Register = () => {
         }
 
         setInputs({ ...inputs, phone: e.target.value })
+    }
+
+
+    if (loader == true) {
+        return (
+
+            <div className="h">
+                <div class="hacker-loader">
+                    <div class="binary-ring"></div>
+                    <div class="core"></div>
+                    <div class="binary-digits">
+                        <span>0</span>
+                        <span>1</span>
+                        <span>0</span>
+                        <span>1</span>
+                        <span>1</span>
+                        <span>0</span>
+                        <span>1</span>
+                        <span>0</span>
+                    </div>
+                    <div class="loading-text">Registering...</div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        )
     }
 
 
