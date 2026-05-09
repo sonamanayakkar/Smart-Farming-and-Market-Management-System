@@ -23,7 +23,7 @@ import Buyerhome from './components/buyer/Buyerhome'
 import Market from './components/buyer/Market'
 import Cart from './components/buyer/Cart'
 import Orders from './components/buyer/Orders'
-import Buyermain from './components/buyermain'
+import Buyermain from './components/Buyermain'
 import Buyers from './components/adminPannel/Buyers'
 
 function App() {
