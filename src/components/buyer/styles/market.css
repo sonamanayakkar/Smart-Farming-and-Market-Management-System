@@ -1,0 +1,244 @@
+.marketsection {
+    padding: 40px 7vw;
+}
+
+.marketsection .banner {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(to right, #1E6323, #3ea643);
+    padding: 40px;
+    border-radius: 20px;
+}
+
+.marketsection .banner h1 {
+    color: white;
+    font-weight: 700;
+}
+
+.marketsection .banner h5 {
+    color: rgba(255, 255, 255, 0.504);
+    font-weight: 600;
+}
+
+.marketsection .banner p {
+    color: rgba(255, 255, 255, 0.734);
+    font-weight: 500;
+}
+
+.marketsection .banner .three {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.marketsection .banner .three .t {
+    background-color: rgba(255, 255, 255, 0.136);
+    padding: 15px 20px;
+    border-radius: 20px;
+    color: white;
+    font-weight: 600;
+    border: 1.58px solid rgba(255, 255, 255, 0.277);
+    font-size: .9rem;
+}
+
+.marketsection .banner .circle {
+    background-color: #68bc6a;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.marketsection .banner .bigcircle {
+    width: 200px;
+    height: 200px;
+    top: -15%;
+    right: -2%;
+}
+
+.marketsection .banner .smallcircle {
+    width: 150px;
+    height: 150px;
+    bottom: -15%;
+    right: 5%;
+}
+
+
+
+/*filter*/
+
+.marketsection .filter form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+}
+
+.marketsection .filter form input,
+select {
+    height: 7vh;
+    padding: 0 20px;
+    font-size: .9rem;
+}
+
+.marketsection .filter form input {
+    width: 100%;
+}
+
+.marketsection .filter form .inputbox {
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.marketsection .filter form p {
+    font-size: .9rem;
+}
+
+.marketsection .filter form .inputbox .search {
+    position: absolute;
+    right: 20px;
+    font-size: 1.2rem;
+}
+
+
+
+/*Lists*/
+
+
+
+.marketsection .card2 .image {
+    padding: 20px 20px;
+    background-color: #e4f4e4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+}
+
+
+
+.marketsection .card2 {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px 2px rgb(198, 198, 198);
+}
+
+.marketsection .card2 .image span {
+    position: absolute;
+    background: linear-gradient(to right, rgb(8, 96, 8), green);
+    padding: 2px 10px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    font-size: .8rem;
+    left: 10px;
+    top: 10px;
+}
+
+.marketsection .card2 .image p {
+    position: absolute;
+    background-color: white;
+    padding: 2px 10px;
+    border-radius: 10px;
+    color: green;
+    font-weight: 600;
+    font-size: .8rem;
+    right: 10px;
+    top: 10px;
+    border: 1.5px solid green;
+}
+
+.marketsection .card2 .image h1 {
+    font-size: 5rem;
+}
+
+.marketsection .card2 .details {
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.marketsection .card2 .details .farmer p {
+    font-weight: 600;
+    font-size: .9rem;
+}
+
+.marketsection .card2 .details button {
+    background-color: #1669c4;
+}
+
+.marketsection .card2 .details .two p {
+    background-color: rgba(128, 128, 128, 0.077);
+    border-radius: 10px;
+    padding: 2px 10px;
+    width: fit-content;
+    color: rgb(0, 125, 23);
+    font-size: .7rem;
+    border: 1.58px solid green;
+
+}
+
+.marketsection .card2 .details h5 {
+    color: rgb(5, 91, 5);
+    font-weight: 700;
+}
+
+.marketsection .card2 .details h5 span {
+    color: rgb(110, 110, 110);
+    font-weight: 500;
+    font-size: .9rem;
+}
+
+
+.form .info {
+    background-color: rgb(235, 235, 235);
+    padding: 20px;
+    border-radius: 20px;
+    border: 1.57px solid rgba(116, 145, 127, 0.755);
+}
+
+.form .info .details p {
+    color: rgb(107, 107, 107);
+    font-size: .9rem;
+}
+
+.form .info .details h6 {
+    color: rgb(2, 106, 12);
+    font-size: .9rem;
+    font-weight: 700;
+}
+
+.form .info p {
+    color: rgb(97, 97, 97);
+    font-weight: 600;
+}
+
+.form .info h5 {
+    color: rgb(2, 106, 12);
+    font-weight: 700;
+}
+
+.form button {
+    font-weight: 600;
+    font-size: .9rem;
+}
+
+
+@media screen and (max-width:950px) {
+
+    .marketsection .banner .circle {
+       display: none;
+    }
+
+  
+
+
+
+}

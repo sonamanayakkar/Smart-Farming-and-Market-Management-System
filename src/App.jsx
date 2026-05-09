@@ -19,6 +19,12 @@ import Adminhome from './components/adminPannel/Adminhome'
 import Dashboard from './components/adminPannel/Dashboard'
 import Farmers from './components/adminPannel/Farmers'
 import Adminprofit from './components/adminPannel/Adminprofit'
+import Buyerhome from './components/buyer/Buyerhome'
+import Market from './components/buyer/Market'
+import Cart from './components/buyer/Cart'
+import Orders from './components/buyer/Orders'
+import Buyermain from './components/buyermain'
+import Buyers from './components/adminPannel/Buyers'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -35,7 +41,15 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="farmers" element={<Farmers />} />
+          <Route path="buyers" element={<Buyers />} />
           <Route path="profitreports" element={<Adminprofit />} />
+        </Route>
+        {/* <Route path='/buyer/*' element={<Buyerhome />} > */}
+        <Route path='/buyer/*' element={<Buyermain />} >
+          {/* <Route index element={<Market />} />
+          <Route index path='market' element={<Market />} />
+          <Route index path='cart' element={<Cart />} />
+          <Route index path='orders' element={<Orders />} /> */}
         </Route>
         <Route path="/*" element={<Submain />} />
 

@@ -186,7 +186,7 @@ const Planner = () => {
                 },
             })
             const response = await getdata.json()
-            
+
 
             let cropsdata = response.response[0].lists
 
@@ -215,6 +215,9 @@ const Planner = () => {
         active: "green"
     };
 
+    
+
+
     return (
         <>
 
@@ -223,9 +226,21 @@ const Planner = () => {
                     <h3 className='fw-bold'>Planner</h3>
                     <p>Manage divestries, expenses & labour</p>
                 </div>
-                <div className="up mt-5 mb-3">
-                    <p className='m-0 fw-bold'>🌳 My Divestries</p>
+
+                <div className="nav2 mt-5 mb-3  d-flex flex-lg-row flex-wrap gap-3">
+                    <div className="up " style={{backgroundColor:'rgb(12, 131, 32)'}}>
+                        <Link to='/planner' style={{ textDecorationLine: 'none', color: 'white' }}> <p className='m-0   fw-bold'>🌳 My Divestries</p></Link>
+                    </div>
+                    <div className="up  " style={{backgroundColor:'rgb(255, 255, 255)'}}>
+                        <Link to='/croplist' style={{ textDecorationLine: 'none', color: 'rgb(0, 0, 0)' }}> <p className='m-0 fw-bold'>🏷️ List My Products</p></Link>
+
+                    </div>
+                    <div className="up  " style={{backgroundColor:'rgb(255, 255, 255)'}}>
+                        <Link to='/buyerOrders' style={{ textDecorationLine: 'none', color: 'rgb(0, 0, 0)' }}> <p className='m-0 fw-bold'>🗒️ Buyer Orders</p></Link>
+
+                    </div>
                 </div>
+
                 <div className="bottom ">
                     <div className="two  d-flex justify-content-between align-items-center">
                         <h4 className='fw-bold m-0'>🌾 ALL DIVESTRIES</h4>
@@ -235,7 +250,7 @@ const Planner = () => {
                         <div className="container">
                             <div className="row row-cols-lg-4 row-cols-1">
 
-                                  <div className="col cropbox mt-2" onClick={() => setCross(ele => false)}>
+                                <div className="col cropbox mt-2" onClick={() => setCross(ele => false)}>
                                     <div className="card card2 p-4 d-flex align-items-center justify-content-center" style={{ cursor: "pointer" }}>
                                         <div className="new">
                                             +
@@ -280,7 +295,7 @@ const Planner = () => {
 
 
 
-                              
+
 
 
                             </div>

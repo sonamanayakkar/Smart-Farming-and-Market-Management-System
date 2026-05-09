@@ -4,6 +4,7 @@ import onion from './images/home/onion.jpg'
 import { data } from 'react-router-dom'
 import districts from '../../public/district.json'
 import { autologout } from './autologout/autoLogout'
+import { icon } from './PlantIcons/icon'
 
 const Search = () => {
     let [datas, setDatas] = useState([])  // all data
@@ -19,7 +20,7 @@ const Search = () => {
         autologout()
         let fetchdata = async () => {
             try {
-                let prices = await fetch('https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=579b464db66ec23bdd000001367747db4b0c4802691ea07f75878c91&offset=0&limit=1000&&filters[state]=kerala&format=csv&format=json')
+                let prices = await fetch('https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=579b464db66ec23bdd000001367747db4b0c4802691ea07f75878c91&offset=0&limit=1000&&filters[state]=Tamil%20Nadu&format=csv&format=json')
 
 
                 let formated = await prices.json()
@@ -125,10 +126,11 @@ const Search = () => {
 
                             {filtered && filtered.length > 0 ? filtered.map((ele, idx) => (
                                 <div key={idx} className="scale border d-lg-flex justify-content-between align-items-center">
-                                    <div className="u d-flex gap-3">
-                                        {/* <div className="image">
-                                            <img src={ele.image} alt="" />
-                                        </div> */}
+                                    <div className="u d-lg-flex gap-3">
+                                        <div className="image">
+                                            {/* <img src={ele.image} alt="" /> */}
+                                            <h1>{icon((ele.commodity).toLowerCase())}</h1>
+                                        </div>
                                         <div className="infos">
                                             <div className="two">
                                                 <h5 className='fw-bold'>{ele.district}</h5>

@@ -457,7 +457,9 @@
 }
 
 
-
+ .Registersection form .choose{
+        width: 50%;
+     }
 
 
 
@@ -521,6 +523,14 @@
     .Registersection p {
         font-size: .8rem;
     }
+
+    .Registersection .landr2 {
+      height: 90vh;
+    }
+
+     .Registersection form .choose{
+        width: 100%;
+     }
 
 
 

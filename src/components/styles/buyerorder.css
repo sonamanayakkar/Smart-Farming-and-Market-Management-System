@@ -1,0 +1,36 @@
+.buyerordersection .table {
+    width: 100%;
+    overflow: scroll;
+}
+
+.buyerordersection .table table {
+    width: 100%;
+    
+}
+
+.buyerordersection .table table th,
+td {
+    text-align: center;
+    border-bottom: 1.5px solid rgb(215, 215, 215);
+
+}
+
+.buyerordersection .table table td {
+    padding: 20px;
+    background-color: white;
+    font-size: .87rem;
+}
+
+.buyerordersection .table table th {
+    padding: 10px 20px;
+    background-color: rgb(68, 176, 100);
+    color: rgb(255, 255, 255);
+}
+
+.buyerordersection .table table td .address {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}

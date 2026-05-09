@@ -47,6 +47,10 @@
     grid-area: sidemenu;
     background: linear-gradient(-45deg, #0a131c, #152234);
     border-right: 1.7px rgba(147, 147, 147, 0.44) solid;
+    overflow: auto;
+}
+.adminsection aside::-webkit-scrollbar{
+    display: none;
 }
 
 .adminsection main {

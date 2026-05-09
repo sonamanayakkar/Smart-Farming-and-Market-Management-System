@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -11,13 +11,35 @@ import Swal from 'sweetalert2'
 const Login = () => {
 
     const navigate = useNavigate()
-    const [inputs, setInputs] = useState({ details: { role: 'farmer', sts: true }, fname: '', lname: '', password: '', email: '', District: 'Chennai' })
+    const [inputs, setInputs] = useState({ details: { role: 'farmer' }, fname: '', lname: '', password: '', email: '', District: 'Chennai' })
     const [errors, setErrors] = useState({})
 
     const [inputType, setInputType] = useState({ type: 'password', condition: false })
 
     const [loader, setLoader] = useState(null)
 
+    let farmer = useRef()
+    let buyer = useRef()
+    let admin = useRef()
+
+    let reset = () => {
+        farmer.current.style.border = '2px solid rgba(107, 107, 107, 0.618)'
+        buyer.current.style.border = '2px solid rgba(107, 107, 107, 0.618)'
+        admin.current.style.border = '2px solid rgba(107, 107, 107, 0.618)'
+
+        farmer.current.style.background = 'none'
+        buyer.current.style.background = 'none'
+        admin.current.style.background = 'none'
+
+    }
+
+
+    let bg = (value) => {
+        reset()
+        value.current.style.border = ' 1.6px solid rgb(4, 81, 4)'
+        value.current.style.background = ' rgba(47, 161, 47, 0.32)'
+
+    }
 
     let submit = (e) => {
 
@@ -81,6 +103,11 @@ const Login = () => {
                         setlocaldata('User', getdata.response2)
                         return navigate('/Home')
                     }
+                    else if (getdata.response2.role == "buyer") {
+                        setlocaldata('User', getdata.response2)
+                        return navigate('/buyer')
+                    }
+
                     setlocaldata('Admin', getdata.response2)
                     navigate('/Admin/dashboard')
                 }
@@ -191,16 +218,21 @@ const Login = () => {
 
                     <div className="col">
                         <label htmlFor="">QUICK LOGIN AS</label>
-                        <div className="split d-flex gap-3 mt-2">
-                            <div className="choose w-50 " style={inputs.details.sts == true ? { background: 'rgba(47, 161, 47, 0.32)', border: '1.6px solid rgb(4, 81, 4)' } : { background: 'none' }} onClick={(e) => setInputs({ ...inputs, details: { role: 'farmer', sts: true } })}>
+                        <div className="split d-flex flex-column flex-lg-row gap-3 mt-2">
+                            <div className="choose  " ref={farmer} style={{ background: 'rgba(47, 161, 47, 0.32)', border: '1.6px solid rgb(4, 81, 4)' }} onClick={(e) => { setInputs({ ...inputs, details: { role: 'farmer' } }); bg(farmer) }}>
                                 <h5>🌾</h5>
                                 <h5>FARMER</h5>
                                 <p className='m-0'>Track my farm</p>
                             </div>
-                            <div className="choose w-50" style={inputs.details.sts == false ? { background: 'rgba(47, 161, 47, 0.32)', border: '1.6px solid rgb(4, 81, 4)' } : { background: 'none' }} onClick={(e) => setInputs({ ...inputs, details: { role: 'admin', sts: false } })}>
+                            <div className="choose " ref={buyer} onClick={(e) => { setInputs({ ...inputs, details: { role: 'buyer' } }); bg(buyer) }}>
+                                <h5>🛒</h5>
+                                <h5>Buyer</h5>
+                                <p className='m-0 text-center'>Fresh Picks, Fair Prices</p>
+                            </div>
+                            <div className="choose " ref={admin} onClick={(e) => { setInputs({ ...inputs, details: { role: 'admin' } }); bg(admin) }}>
                                 <h5>🛡️</h5>
                                 <h5>ADMIN</h5>
-                                <p className='m-0'>Manage platform</p>
+                                <p className='m-0 text-center'>Manage platform</p>
                             </div>
                         </div>
                         <span >{errors.role}</span>

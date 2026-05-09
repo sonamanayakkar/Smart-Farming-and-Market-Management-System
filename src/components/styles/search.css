@@ -73,18 +73,14 @@ button {
     width: 100%;
 }
 
-.searchsection .scale .u .image {
-    height: 120px;
-    width: 120px;
-    border-radius: 10px;
-    overflow: hidden;
+.searchsection .scale .u .image h1{
+    background-color: rgba(3, 255, 3, 0.46);
+    width: fit-content;
+    padding: 10px;
+    border-radius: 20px;
 }
 
-.searchsection .scale .u .image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+
 
 .searchsection .scale .u span {
     color: black;

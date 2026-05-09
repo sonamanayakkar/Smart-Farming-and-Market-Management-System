@@ -7,6 +7,7 @@ const Adminprofit = () => {
 
     let [usertable, setUsertable] = useState([])
     let [count, setCount] = useState({ totalProfits: 0, totalLoss: 0, percentage: 0 })
+console.log(usertable);
 
 
     useEffect(() => {
@@ -22,6 +23,8 @@ const Adminprofit = () => {
                 })
 
                 const response = await user.json()
+               
+
                 const { saleAmount, totalProfit, totalLoss, profitPercentage } = response.response.crop2[0]
                 setCount({ ...count, totalProfits: totalProfit, totalLoss: Math.abs(totalLoss), percentage: Math.round(profitPercentage) })
 
@@ -38,6 +41,8 @@ const Adminprofit = () => {
                     }
                 })
 
+             
+                
 
                 setUsertable(usermap)
 

@@ -10,6 +10,8 @@ import Profit from './Profit'
 import Header2 from './Header2'
 import Profile from './Profile'
 import Labors from './devestries/Labors'
+import Croplist from './Croplist'
+import BuyerOrders from './BuyerOrders'
 
 
 const Submain = () => {
@@ -25,6 +27,8 @@ const Submain = () => {
                 <Route path='/search' element={<Search />} />
                 <Route path='/planner' element={<Planner />} />
                 <Route path='/divestry' element={<Divestries />} />
+                <Route path='/croplist' element={<Croplist/>} />
+                <Route path='/buyerOrders' element={<BuyerOrders/>} />
                 <Route path='/labours/:cropid' element={<Labors />} />
                 <Route path='/divestry/:cropid' element={<Divestries />} />
                 <Route path='/back' element={<Planner />} />

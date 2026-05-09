@@ -1,0 +1,162 @@
+.cartsection {
+    padding: 40px 7vw;
+    min-height: 100vh;
+}
+
+
+.cartsection .orderdiv .l {
+    flex-grow: 2;
+    height: 60vh;
+    overflow: auto;
+    padding: 20px;
+}
+
+.cartsection .orderdiv .l .list {
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.cartsection .orderdiv .l .list h1 {
+    background-color: #e0efe0;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.cartsection .orderdiv .l .list .d p {
+    font-weight: 500;
+    color: gray;
+    font-size: .9rem;
+}
+
+.cartsection .orderdiv .l .list .d .qty .b {
+    background-color: rgba(0, 128, 0, 0.148);
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: rgb(14, 103, 14);
+    cursor: pointer;
+}
+
+.cartsection .orderdiv .l .list .d .qty .v {
+    padding: 5px 10px;
+}
+
+.cartsection .orderdiv .l .list .d h6 {
+    color: rgb(6, 109, 6);
+    font-weight: 700;
+}
+
+.cartsection .orderdiv .l .list .fa-xmark {
+    position: absolute;
+    right: 30px;
+    cursor: pointer;
+}
+
+
+
+
+.cartsection .orderdiv .r {
+    border-radius: 20px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.cartsection .orderdiv .r .hist {
+    border-bottom: 1.58px solid rgba(94, 94, 94, 0.586);
+}
+
+.cartsection .orderdiv .r h4 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.cartsection .orderdiv .r .hist p {
+    font-size: .9rem;
+    font-weight: 500;
+    color: rgb(104, 104, 104);
+}
+
+.cartsection .orderdiv .r .total h3 {
+    font-weight: 700;
+    color: rgb(0, 83, 0);
+}
+
+.cartsection .orderdiv .r p {
+    color: gray;
+    font-size: .8rem;
+}
+
+.cartsectionform {
+    z-index: 2000;
+}
+
+.cartsectionform form {
+    height: 90vh;
+    overflow: auto;
+}
+
+.cartsectionform form::-webkit-scrollbar {
+    display: none;
+}
+
+.cartsectionform form .up {
+    background: linear-gradient(to right, green, green);
+    padding: 20px;
+}
+
+.cartsectionform form .bottom {
+    padding: 20px;
+}
+
+.cartsectionform form .bottom h5 {
+    font-weight: 700;
+    font-size: .9rem;
+}
+
+.cartsectionform form .box .three {
+    border: 1.6px solid rgb(197, 197, 197);
+    padding: 10px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.cartsectionform form .box .three .c h5 {
+    font-weight: 700;
+    font-size: .9rem;
+}
+
+.cartsectionform form .box .three .c p {
+    font-weight: 500;
+    font-size: .8rem;
+    color: gray;
+}
+.cartsectionform form span{
+    color: red;
+    font-weight: 500;
+    font-size: .8rem;
+}
+
+@media screen and (max-width:950px) {
+
+    .cartsection .orderdiv .l .list .d .qty .b {
+        background-color: rgba(0, 128, 0, 0.148);
+        height: 30px;
+        width: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 1rem;
+        font-weight: 700;
+        color: rgb(14, 103, 14);
+        cursor: pointer;
+    }
+}

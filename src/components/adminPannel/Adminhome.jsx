@@ -110,6 +110,7 @@ const Adminhome = () => {
                             <Link to='/Admin/dashboard' onClick={nav}><li style={{ backgroundColor: navcolor('/Admin/dashboard').bg, color: navcolor('/Admin/dashboard').color }}><i className="fa-solid fa-house"></i> Dahboard</li></Link>
                             <p className='ms-4 mt-2 mb-0'>Management</p>
                             <Link to='/Admin/farmers' onClick={nav}><li style={{ backgroundColor: navcolor('/Admin/farmers').bg, color: navcolor('/Admin/farmers').color }}> <i className="fa-solid fa-users"></i> All Farmers </li></Link>
+                            <Link to='/Admin/buyers' onClick={nav}><li style={{ backgroundColor: navcolor('/Admin/buyers').bg, color: navcolor('/Admin/buyers').color }}> <i className="fa-solid fa-users"></i> All Buyers </li></Link>
                             <p className='ms-4 mt-2 mb-0'>Profits</p>
                             <Link to='/Admin/profitreports' onClick={nav}><li style={{ backgroundColor: navcolor('/Admin/profitreports').bg, color: navcolor('/Admin/profitreports').color }}><i className="fa-solid fa-arrow-trend-up"></i> Profit Reports </li></Link>
                         </ul>

@@ -193,6 +193,11 @@ const Register = () => {
                                 <h5>FARMER</h5>
                                 <p className='m-0'>Track my farm</p>
                             </div>
+                            <div className="choose w-50 " style={inputs.details.sts == false ? { background: 'rgba(47, 161, 47, 0.32)', border: '2px solid rgb(4, 81, 4)' } : { background: 'none' }} onClick={(e) => setInputs({ ...inputs, details: { role: 'buyer', sts: false } })}>
+                                <h5>🛒</h5>
+                                <h5>Buyer</h5>
+                                <p className='m-0'>Fresh Picks, Fair Prices</p>
+                            </div>
                             <div className="choose w-50 d-none" style={inputs.details.sts == false ? { background: 'rgba(47, 161, 47, 0.32)', border: '2px solid rgb(4, 81, 4)' } : { background: 'none' }} onClick={(e) => setInputs({ ...inputs, details: { role: 'admin', sts: false } })}>
                                 <h5>🛡️</h5>
                                 <h5>ADMIN</h5>

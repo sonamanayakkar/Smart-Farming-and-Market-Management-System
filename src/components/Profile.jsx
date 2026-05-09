@@ -16,6 +16,8 @@ const Profile = ({ set }) => {
     let [refresh, setRefresh] = useState(false)
 
     let [file, setFile] = useState(null)
+    const [preview, setPreview] = useState("");
+
 
     const token = getkey()
 
@@ -52,7 +54,7 @@ const Profile = ({ set }) => {
 
         const formData = new FormData()
 
-        formData.append("FirstName", inputs.firstName)
+        formData.append("firstName", inputs.firstName)
         formData.append("lastName", inputs.lastName);
         formData.append("phoneNumber", inputs.phoneNumber);
         formData.append("district", inputs.district);
@@ -142,13 +144,23 @@ const Profile = ({ set }) => {
                         <div className="editprofile d-flex flex-column justify-content-between align-items-center my-3">
                             <div className="outer">
                                 <div className="photo">
-                                    <img src={profileImage} alt="" />
+                                    <img src={preview?preview:profileImage} alt="" />
 
                                 </div>
 
                                 <div className="camera">
                                     📷
-                                    <input type="file" className='file' onChange={(e) => setFile(e.target.files[0])} />
+                                    <input type="file" className='file' onChange={(e) => {
+                                        const selectedFile = e.target.files[0]; if (selectedFile) {
+
+                                            setFile(selectedFile);
+
+                                            setPreview(
+                                                URL.createObjectURL(selectedFile)
+                                            );
+
+                                        }
+                                    }} />
                                 </div>
                             </div>
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { ToastContainer, toast } from "react-toastify";
 import { getkey } from '../localStorage/currentUser.js'
 import { apicall } from '../../../handler/api.js'
 import { autologout } from '../autologout/autoLogout.js'
@@ -31,6 +32,26 @@ const Labors = () => {
                         headers: { "Content-type": "application/json", "Authorization": `Bearer ${token}` },
                         body: JSON.stringify(inputs)
                     })
+
+                    const response = await labour.json()
+
+                    const customToast = (msg) => {
+                        toast(({ closeToast }) => (
+                            <div className="flex justify-between items-center">
+                                <span>{msg}</span>
+                                {/* <button onClick={closeToast}>✖</button> */}
+                            </div>
+                        ), {
+                            style: {
+                                background: "linear-gradient(135deg, #028800, #cbf8c3)",
+                                color: "#fff"
+                            },
+                            autoClose: true
+                        });
+                    };
+                    if (response) {
+                        customToast('Labour Added!')
+                    }
                 }
                 catch (error) {
 

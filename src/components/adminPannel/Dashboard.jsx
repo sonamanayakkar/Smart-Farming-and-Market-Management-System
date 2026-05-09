@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import "./style/dashboard.css"
 import { Link } from 'react-router-dom'
-import {apicall} from '../../../handler/api.js'
+import { apicall } from '../../../handler/api.js'
 import { autologout } from '../autologout/autoLogout.js'
+import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from "recharts";
 
 const Dashboard = () => {
 
     let [usertable, setUsertable] = useState([])
-    let [count, setCount] = useState({ totalfarmers: 0, activedivestry: 0, profits: 0 })
+    let [count, setCount] = useState({ totalfarmers: 0, totalbuyers: 0, activedivestry: 0, profits: 0 })
 
     let date = () => {
         let date = new Date()
-       return date.toLocaleDateString();
-        
+        return date.toLocaleDateString();
+
     }
-    
+
 
     useEffect(() => {
         autologout()
@@ -28,14 +29,18 @@ const Dashboard = () => {
                 })
 
                 const response = await user.json()
-                setCount({ ...count, totalfarmers: response.response[0].users.length, activedivestry: response.response[0].totalcrops.length, profits: response.response[0].totalprofits })
 
-                let usermap = response.response[0].users.map((ele, idx) => {
+               
+
+                setCount({ ...count, totalfarmers: response.response.topUser[0].farmers.length, totalbuyers: response.response.topUser[0].buyers.length, activedivestry: response.response.activecrops.length, profits: response.response.topUser[0].totalprofits })
+
+                let usermap = response.response.topUser[0].users.map((ele, idx) => {
                     return {
                         firstName: ele.firstName,
                         district: ele.district,
                         date: ele.createdAt.split("T")[0],
                         crops: ele.userwith_cropdata,
+                        role: ele.role
                     }
                 })
 
@@ -71,7 +76,19 @@ const Dashboard = () => {
                         <div className="c c1">
                             <h5>TOTAL FARMERS</h5>
                             <h1 className='text-white fw-bold'>{count.totalfarmers}</h1>
-                            <span>+24 this week</span>
+                            {/* <span>+24 this week</span> */}
+
+                            <div className="round">
+
+                            </div>
+                            <div className="icon"><i className="fa-solid fa-user-group"></i></div>
+                        </div>
+                    </div>
+                    <div className="col col-lg-3 col-md-6  col-12">
+                        <div className="c c3">
+                            <h5>TOTAL BUYERS</h5>
+                            <h1 className='text-white fw-bold'>{count.totalbuyers}</h1>
+                            {/* <span>+24 this week</span> */}
 
                             <div className="round">
 
@@ -83,7 +100,7 @@ const Dashboard = () => {
                         <div className="c c2">
                             <h5>ACTIVE DIVESTRIES</h5>
                             <h1 className='text-white fw-bold'>{count.activedivestry}</h1>
-                            <span>+24 this week</span>
+                            {/* <span>+24 this week</span> */}
 
                             <div className="round">
 
@@ -91,12 +108,12 @@ const Dashboard = () => {
                             <div className="icon"><i className="fa-solid fa-seedling"></i></div>
                         </div>
                     </div>
-                    
+
                     <div className="col col-lg-3 col-md-6 col-12">
                         <div className="c c4">
                             <h5>PLATFORM PROFITS</h5>
                             <h1 className='text-white fw-bold'>₹{count.profits}</h1>
-                            <span>+24 this week</span>
+                            {/* <span>+24 this week</span> */}
 
                             <div className="round">
 
@@ -107,6 +124,38 @@ const Dashboard = () => {
 
                 </div>
             </div>
+
+            {/* <div style={{ width: "100%", height: 300 }}>
+
+                <ResponsiveContainer>
+
+                    <PieChart>
+
+                        <Pie
+                            data={data}
+                            dataKey="total"
+                            nameKey="name"
+                            outerRadius={100}
+                            label
+                        >
+                            {
+                                data.map((entry, index) => (
+                                    <Cell
+                                        key={index}
+                                        fill={COLORS[index]}
+                                    />
+                                ))
+                            }
+
+                        </Pie>
+
+                        <Tooltip />
+
+                    </PieChart>
+
+                </ResponsiveContainer>
+
+            </div> */}
 
             <div className="table mt-4  ">
 
@@ -125,7 +174,7 @@ const Dashboard = () => {
                                 <th>NAME</th>
                                 <th>DISTRICT</th>
                                 <th>DATE</th>
-                                <th>DIVESTRIES</th>
+                                <th>Role</th>
                                 <th>STATUS</th>
                             </tr>
                         </thead>
@@ -140,7 +189,7 @@ const Dashboard = () => {
                                     <td>{ele.firstName}</td>
                                     <td>{ele.district}</td>
                                     <td>{ele.date}</td>
-                                    <td>{ele.crops.length}</td>
+                                    <td ><span className='' style={ele.role=='buyer'?{ backgroundColor: 'rgba(1, 120, 255, 0.26)',color:'rgb(0, 42, 255)'  }:{ backgroundColor: 'rgba(3, 255, 20, 0.19)',color:'rgb(8, 127, 16)' }}>{ele.role}</span></td>
                                     <td>active</td>
                                 </tr>
                             )) : (<tr >

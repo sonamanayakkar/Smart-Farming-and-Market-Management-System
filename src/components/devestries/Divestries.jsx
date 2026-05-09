@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './divestry.css'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { ToastContainer, toast } from "react-toastify";
 import { getkey } from '../localStorage/currentUser.js'
 import { icon } from '../PlantIcons/icon.js'
 import { apicall } from '../../../handler/api.js'
@@ -50,8 +51,25 @@ const Divestries = () => {
                     })
                     const response = await expence.json()
                     const data = response.response.expences
-                    console.log(response);
-
+                   
+                    
+                    const customToast = (msg) => {
+                        toast(({ closeToast }) => (
+                            <div className="flex justify-between items-center">
+                                <span>{msg}</span>
+                                {/* <button onClick={closeToast}>✖</button> */}
+                            </div>
+                        ), {
+                            style: {
+                                background: "linear-gradient(135deg, #028800, #cbf8c3)",
+                                color: "#fff"
+                            },
+                            autoClose: true
+                        });
+                    };
+                    if (response) {
+                        customToast('Expense Added!')
+                    }
 
 
                 } catch (error) {
@@ -412,7 +430,7 @@ const Divestries = () => {
                                     <td>{ele.date}</td>
                                     <td>{ele.item}{(ele.item.includes('Labour')) ? (<i className="fa-solid fa-arrow-up-right-from-square ms-3" style={{ color: " rgb(0, 64, 255)" }} onClick={() => showlabour(ele.labourIds)}></i>) : ""}</td>
                                     <td>{ele.Amount}</td>
-                                    <td style={{  height: '100%' }}>
+                                    <td style={{ height: '100%' }}>
 
                                         <div className="wrapers">
                                             <i className="fa-solid fa-pencil " onClick={() => edit(ele)} style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }}></i>
