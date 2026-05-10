@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { getlocaldata } from '../localStorage/currentUser'
 import Swal from 'sweetalert2'
@@ -7,9 +7,13 @@ import { getkey } from '../localStorage/currentUser'
 import { ToastContainer, toast } from "react-toastify";
 
 const Buyerheader = ({ set }) => {
-   
+
+    let [notificationdot, setNotificationdot] = useState(false)
 
     const buyerid = getlocaldata()._id
+
+    const location = window.location.pathname
+
 
 
     let navcolor = (url) => {
@@ -68,7 +72,7 @@ const Buyerheader = ({ set }) => {
                 })
 
                 const response = await crop.json();
-
+               
                 const customToast = (otp) => {
                     toast(({ closeToast }) => (
                         <div className="flex justify-between items-center ">
@@ -96,6 +100,29 @@ const Buyerheader = ({ set }) => {
         getotp()
     }
 
+    useEffect(() => {
+
+        let getotp = async () => {
+            try {
+                const crop = await fetch(`${apicall()}OTP/${buyerid}`, {
+                    method: 'GET',
+                    headers: { "Content-type": "application/json", "Authorization": `Bearer ${getkey()}` },
+                })
+
+                const response = await crop.json();
+              
+
+
+                if (response.response.length > 0) {
+                    setNotificationdot(true)
+                }
+            } catch (error) {
+
+            }
+        }
+        getotp()
+    }, [])
+
 
 
 
@@ -112,14 +139,14 @@ const Buyerheader = ({ set }) => {
                     </div>
                     <nav className='m-0'>
                         <ul className='m-0 p-0'>
-                            <li style={{ backgroundColor: navcolor('/Home').bg }}>
-                                <Link to='/buyer/market' style={{ color: navcolor('/market').text }}>Market Place</Link>
+                            <li style={{ backgroundColor: navcolor('/buyer/market').bg }}>
+                                <Link to='/buyer/market' style={{ color: navcolor('/buyer/market').text }}>Market Place</Link>
                             </li>
-                            <li style={{ backgroundColor: navcolor('/search').bg }}>
-                                <Link to='/buyer/orders' style={{ color: navcolor('/orders').text }}>My Orders</Link>
+                            <li style={{ backgroundColor: navcolor('/buyer/orders').bg }}>
+                                <Link to='/buyer/orders' style={{ color: navcolor('/buyer/orders').text }}>My Orders</Link>
                             </li>
-                            <li style={{ backgroundColor: navcolor('/planner').bg }}>
-                                <Link to='/buyer/cart' style={{ color: navcolor('/cart').text }}>Cart</Link>
+                            <li style={{ backgroundColor: navcolor('/buyer/cart').bg }}>
+                                <Link to='/buyer/cart' style={{ color: navcolor('/buyer/cart').text }}>Cart</Link>
                             </li>
 
                         </ul>
@@ -128,6 +155,8 @@ const Buyerheader = ({ set }) => {
 
                         <div className="bell" onClick={() => notificationCheck()}>
                             <i className="fa-solid fa-bell"></i>
+                            {notificationdot ? <div className="dot"></div> : null}
+
                         </div>
                         <div className="me d-flex gap-2">
                             <div className="four">

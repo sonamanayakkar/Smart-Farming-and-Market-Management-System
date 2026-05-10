@@ -105,7 +105,7 @@ const Orders = () => {
             <div className="list d-flex flex-lg-row flex-md-row gap-3 flex-column align-items-lg-start align-items-lg-center justify-content-between mb-3" key={idx}>
               <div className="l d-flex align-items-center gap-3">
                 <div className="image">
-                  <h1>{icon(ele.cropName)}</h1>
+                  <h1>{icon(ele.cropName.toLowerCase())}</h1>
                 </div>
                 <div className="content">
                   <h4>{ele.cropName}</h4>

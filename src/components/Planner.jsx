@@ -266,7 +266,7 @@ const Planner = () => {
                                     <div className="col mt-2 cropbox " key={idx} >
                                         <div className="  card p-4" >
                                             {/* <img src="..." className="card-img-top" alt="..." /> */}
-                                            <h1>{icon(ele.cropName)}</h1>
+                                            <h1>{icon(ele.cropName.toLowerCase())}</h1>
                                             <div className="card-body py-2 px-0">
                                                 <h5 className="card-title">{ele.cropName}</h5>
                                                 <p className="card-text">{ele.area} Acres.started {ele.startDate}</p>

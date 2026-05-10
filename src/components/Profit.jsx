@@ -186,7 +186,7 @@ const Profit = () => {
                             if (ele.status == "active" || ele.status == "In Progress") {
                                 return (<div className="three py-lg-2 py-3 px-lg-5 px-2 mb-4" key={idx}>
                                     <div className=" d-flex flex-lg-row flex-md-row flex-column align-items-center" >
-                                        <h1>{icon(ele.cropName)}</h1>
+                                        <h1>{icon(ele.cropName.toLowerCase())}</h1>
                                         <div className="card-body d-flex  flex-column align-items-lg-start align-items-center">
                                             <h5 className="card-title fs-5 fw-bold">{ele.cropName} <span style={{ color: stscolor[ele.status] }}>{ele.status}</span></h5>
                                             <p className="card-text">{ele.area} Acres.started {ele.startDate}</p>

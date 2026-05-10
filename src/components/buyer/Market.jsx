@@ -46,6 +46,7 @@ const Market = () => {
     let addCart = (ele) => {
 
 
+
         let getdata = async () => {
             try {
                 const crop = await fetch(`${apicall()}cartlist`, {
@@ -163,7 +164,11 @@ const Market = () => {
 
             }
         }
-        postdata()
+        if (addcart.QTY > 0) {
+            return postdata()
+        }
+        alert(`Quantity cannot be 0`)
+
 
 
 
@@ -172,7 +177,7 @@ const Market = () => {
     let setQuantity = (e) => {
         const positiveqty = Number(e.target.value)
 
-        if (positiveqty >= 0) {
+        if (positiveqty > 0) {
 
             if (positiveqty <= addcart.kg) {
                 setAddcart({ ...addcart, QTY: Number(e.target.value), priceAmount: Number(e.target.value) * addcart.defaultamount })
@@ -186,7 +191,7 @@ const Market = () => {
 
         }
         else {
-            setAddcart({ ...addcart, QTY: 1 })
+            setAddcart({ ...addcart, QTY: null })
         }
 
 
@@ -235,7 +240,7 @@ const Market = () => {
 
                             </select>
                         </div>
-                        <p className='m-0'>Showing 6 listings</p>
+                        <p className='m-0'>Showing {cropdata.length} listings</p>
                     </form>
                 </div>
 
@@ -248,7 +253,7 @@ const Market = () => {
                             <div className="col p-2" key={idx}>
                                 <div className="card2">
                                     <div className="image">
-                                        <h1>{icon(ele.cropName)}</h1>
+                                        <h1>{icon(ele.cropName.toLowerCase())}</h1>
                                         <span>🌿 Fresh Today</span>
                                         <p className='m-0'>{ele.availableKG}kg Left</p>
                                     </div>
@@ -284,7 +289,7 @@ const Market = () => {
                             </div>
                         )) : (
                             <div className="col p-2" >
-                                no record found
+                                no Products found
                             </div>
                         )}
                         {/* <div className="col p-2">
@@ -335,12 +340,12 @@ const Market = () => {
 
                 <form action="" className='divestryform' onSubmit={submit}>
 
-                    <i className="fa-solid fa-xmark" onClick={() => setIsopen(false)} ></i>
+                    <i className="fa-solid fa-xmark" onClick={() => { setIsopen(false); setAddcart({ cropId: '', farmerId: '', cropName: '', farmerName: '', district: '', QTY: 1, priceAmount: 0, kg: 0, defaultamount: 0 }) }} ></i>
                     <div className="box">
                         <h4 className='fs-5 fw-bold'>🛒 Add to Cart</h4>
                     </div>
                     <div className="info d-flex gap-3 align-items-center">
-                        <h1>🧅</h1>
+                        <h1>{icon(addcart.cropName.toLowerCase())}</h1>
                         <div className="details">
                             <h4 className='fs-5 fw-bold'>{addcart.cropName}</h4>
                             <p className=''>by {addcart.farmerName} · {addcart.district}</p>
@@ -362,7 +367,7 @@ const Market = () => {
 
 
                     <div className=" d-flex gap-3">
-                        <button className='button1' type='button' onClick={() => setIsopen(false)}>Cancel</button>
+                        <button className='button1' type='button' onClick={() => { setIsopen(false); setAddcart({ cropId: '', farmerId: '', cropName: '', farmerName: '', district: '', QTY: 1, priceAmount: 0, kg: 0, defaultamount: 0 }) }}>Cancel</button>
                         <button className='button2' type='submit' style={{ backgroundColor: '#1669c4' }}>🛒 Add to Cart</button>
                     </div>
 

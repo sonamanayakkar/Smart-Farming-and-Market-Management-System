@@ -255,7 +255,7 @@ const Cart = () => {
 
                         {cartItems && cartItems.length > 0 ? cartItems.map((ele, idx) => (
                             <div className="list d-flex align-items-center gap-4 mb-3" key={idx}>
-                                <h1>{icon(ele.cropName)}</h1>
+                                <h1>{icon(ele.cropName.toLowerCase())}</h1>
                                 <div className="d">
                                     <h5 className='fw-bold'>{ele.cropName}</h5>
                                     <p>{ele.userwithCart[0].firstName} {ele.userwithCart[0].lastName} · {ele.userwithCart[0].district}</p>
@@ -274,7 +274,7 @@ const Cart = () => {
                             </div>
                         )) : (
                             <div className="list d-flex align-items-center justify-content-center gap-4 mb-3">
-                                Cart is empty
+                                Your Cart is empty
                             </div>
                         )}
 

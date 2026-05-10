@@ -324,7 +324,7 @@ const Divestries = () => {
 
                 <div className="three py-lg-3 px-lg-5 p-2 mb-4">
                     <div className=" d-flex flex-lg-row flex-column align-items-center justify-content-center" >
-                        <h1 className='h1 m-0'>{icon(cropname.cropName)}</h1>
+                        <h1 className='h1 m-0'>{icon(cropname.cropName.toLowerCase())}</h1>
                         <div className="card-body ">
                             <h5 className="card-title fs-4 fw-bold text-lg-start text-center">{cropname.cropName}</h5>
                             <p className="card-text">{cropname.area} Acres.started {cropname.date}</p>

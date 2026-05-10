@@ -130,7 +130,7 @@ const Home = () => {
                                 return (
                                     <div className="col" key={idx}>
                                         <div className="box d-flex flex-lg-row flex-column gap-4  align-items-center p-3">
-                                            <h1>{icon(ele.cropName)}</h1>
+                                            <h1>{icon(ele.cropName.toLowerCase())}</h1>
 
                                             <div className="info d-flex  flex-column   align-items-center">
                                                 <h5 className='fw-bold text-center'>{ele.cropName}</h5>

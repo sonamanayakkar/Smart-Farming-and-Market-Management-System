@@ -99,14 +99,25 @@ header .profile .me .edit {
 }
 
 header .profile .bell {
-    border: 2px solid rgba(128, 128, 128, 0.478);
+    position: relative;
+    border: 1.58px solid rgba(187, 187, 187, 0.478);
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: gold;
+    color: rgb(255, 187, 0);
+    cursor: pointer;
+}
+header .dot{
+    position: absolute;
+    width: 10px;
+    height: 10px ;
+    background-color: red;
+    border-radius: 50%;
+    top: 0;
+    right: 0;
 }
 
 header .profile .name h5 {
@@ -125,6 +136,7 @@ header .profile .name span {
     padding: 1px 10px;
     font-size: .8rem;
 }
+
 
 
 header .profile .four button {

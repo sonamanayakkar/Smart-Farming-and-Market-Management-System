@@ -175,7 +175,7 @@ const Croplist = () => {
                                     <div className="col mt-2 cropbox " key={idx}>
                                         <div className="card p-4" >
                                             <div className="one d-flex align-items-start  justify-content-between">
-                                                <h1>{icon(ele.cropName)}</h1>
+                                                <h1>{icon(ele.cropName.toLowerCase())}</h1>
                                                 <div className="card-body py-2 ">
                                                     <h5 className="card-title">{ele.cropName}</h5>
                                                     <p className="card-text">₹{ele.priceperkg}/kg . Chennai</p>
