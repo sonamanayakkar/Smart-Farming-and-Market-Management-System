@@ -3,19 +3,21 @@ import './styles/cart.css'
 import { getkey } from '../localStorage/currentUser'
 import { apicall } from '../../../handler/api'
 import Swal from 'sweetalert2'
+import { ToastContainer, toast } from "react-toastify";
 import { icon } from '.././PlantIcons/icon.js'
 import { topview } from '../topView/topview.js'
 import { autologout } from '../autologout/autoLogout.js'
 
-const Cart = () => {
+const Cart = ({ headerRefresh }) => {
     let [cross, setCross] = useState(false)
     let [refresh, setRefresh] = useState(false)
     let [cartItems, setCartItems] = useState([])
     let [totalamount, setTotalAmount] = useState(0)
     let [qty, setQty] = useState({ qty: 0, price: 0 })
 
-    let [inputs, setInputs] = useState({ name: '', phone: '', street: '', city: '', pincode: '', paymentMethod: '' })
+    let [inputs, setInputs] = useState({ name: '', phone: '', street: '', city: '', pincode: '', paymentMethod: 'cash on delivery' })
     let [errors, setErrors] = useState({})
+
 
 
 
@@ -84,6 +86,7 @@ const Cart = () => {
                 setCartItems(response.response)
 
                 setRefresh(ele => !ele)
+                headerRefresh(ele => !ele)
 
             }
 
@@ -175,20 +178,36 @@ const Cart = () => {
     let validation = () => {
         let errorobj = {}
 
-        if (inputs.name.length < 3) {
+        if (inputs.name == '') {
+            errorobj.name = 'Please Enter Your Name'
+        }
+        else if (inputs.name.length < 3) {
             errorobj.name = 'Name must be 3 characters'
         }
 
-        if (!/^(?:(?:\+|0{0,2})91[\s-]?)?[6-9]\d{9}$/.test(inputs.phone)) {
+        if (inputs.phone == '') {
+            errorobj.phone = 'Please Enter Mobile Number'
+        }
+
+        else if (!/^(?:(?:\+|0{0,2})91[\s-]?)?[6-9]\d{9}$/.test(inputs.phone)) {
             errorobj.phone = 'Incorrect Mobile Number'
         }
-        if (inputs.street.length < 10) {
+        if (inputs.street == '') {
+            errorobj.street = 'Enter Your Address...'
+        }
+        else if (inputs.street.length < 10) {
             errorobj.street = 'Give Detailed Address...'
         }
-        if (inputs.city.length < 3) {
+        if (inputs.city=='') {
+             errorobj.city = 'Enter City/Town'
+        }
+        else if (inputs.city.length < 3) {
             errorobj.city = 'City name must be above 3 characters'
         }
-        if (!/^[1-9][0-9]{5}$/.test(inputs.pincode)) {
+        if (inputs.pincode=='') {
+             errorobj.pincode = 'Enter  Pincode'
+        }
+        else if (!/^[1-9][0-9]{5}$/.test(inputs.pincode)) {
             errorobj.pincode = 'Incorrect Pincode'
         }
 
@@ -222,6 +241,7 @@ const Cart = () => {
 
                 setCross(false)
                 setCartItems(ele => !ele)
+                headerRefresh(ele => !ele)
 
             }
 
@@ -238,6 +258,24 @@ const Cart = () => {
     }
 
     const homeref = useRef()
+
+    const customToast = (message) => {
+        toast(({ closeToast }) => (
+            <div className="flex justify-between items-center ">
+
+                <h6>{message}</h6>
+                {/* <span style={{ color: '#067a00', fontWeight: '700' }}>{otp}</span> */}
+                {/* <button onClick={closeToast}>✖</button> */}
+            </div>
+        ), {
+            style: {
+                background: "linear-gradient(45deg, #ff0808, #d3272791)",
+                color: "#ffffff",
+
+            },
+            autoClose: true
+        });
+    };
 
 
 
@@ -324,7 +362,12 @@ const Cart = () => {
                             <h4>Total</h4>
                             <h3>₹{cartItems.length > 0 ? totalamount : 0}</h3>
                         </div>
-                        <button onClick={() => setCross(true)}>✓ Place Order</button>
+                        <button onClick={() => {
+                            cartItems.length > 0 ? setCross(true)
+                                : customToast('Your Cart has Empty')
+                        }
+
+                        }>✓ Place Order</button>
                         <p className='mt-3 mb-0'>Payment on delivery. No advance needed.</p>
 
                     </div>
@@ -347,12 +390,12 @@ const Cart = () => {
                             <div className="box d-flex flex-lg-row flex-column">
                                 <div className="t  w-100">
                                     <label htmlFor="">FULL NAME</label>
-                                    <input type="text" className=' w-100' required placeholder='Your full Name' onChange={(e) => setInputs({ ...inputs, name: e.target.value })} />
+                                    <input type="text" className=' w-100' placeholder='Your full Name' onChange={(e) => setInputs({ ...inputs, name: e.target.value })} />
                                     <span>{errors.name}</span>
                                 </div>
                                 <div className="t  w-100">
                                     <label htmlFor="">PHONE</label><br />
-                                    <input type="text" className=' w-100' required placeholder='+91 1234567890' onChange={(e) => setInputs({ ...inputs, phone: e.target.value })} />
+                                    <input type="text" className=' w-100' placeholder='+91 1234567890' onChange={(e) => setInputs({ ...inputs, phone: e.target.value })} />
                                     <span>{errors.phone}</span>
                                 </div>
                                 <div className="t"></div>
@@ -360,19 +403,19 @@ const Cart = () => {
 
                             <div className="box w-100">
                                 <label htmlFor="">STREET / HOUSE NO.</label>
-                                <input type="text" required className='w-100' placeholder='e.g. 12, Gandhi street, Ambattur' onChange={(e) => setInputs({ ...inputs, street: e.target.value })} />
+                                <input type="text" className='w-100' placeholder='e.g. 12, Gandhi street, Ambattur' onChange={(e) => setInputs({ ...inputs, street: e.target.value })} />
                                 <span>{errors.street}</span>
                             </div>
 
                             <div className="box d-flex flex-row box d-flex flex-lg-row flex-column">
                                 <div className="t ">
                                     <label htmlFor="">CITY / TOWN</label>
-                                    <input type="text" className=' w-100' required placeholder='e.g. Chennai' onChange={(e) => setInputs({ ...inputs, city: e.target.value })} />
+                                    <input type="text" className=' w-100' placeholder='e.g. Chennai' onChange={(e) => setInputs({ ...inputs, city: e.target.value })} />
                                     <span>{errors.city}</span>
                                 </div>
                                 <div className="t">
                                     <label htmlFor="">PINCODE</label>
-                                    <input type="text" className=' w-100' required placeholder='600053' onChange={(e) => setInputs({ ...inputs, pincode: e.target.value })} />
+                                    <input type="text" className=' w-100' placeholder='600053' onChange={(e) => setInputs({ ...inputs, pincode: e.target.value })} />
                                     <span>{errors.pincode}</span>
                                 </div>
                                 <div className="t"></div>

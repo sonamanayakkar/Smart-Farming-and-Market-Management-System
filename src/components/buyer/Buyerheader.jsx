@@ -6,8 +6,10 @@ import { apicall } from '../../../handler/api'
 import { getkey } from '../localStorage/currentUser'
 import { ToastContainer, toast } from "react-toastify";
 
-const Buyerheader = ({ set }) => {
+const Buyerheader = ({ set,cartlength }) => {
 
+    console.log(cartlength);
+    
     let [notificationdot, setNotificationdot] = useState(false)
 
     const buyerid = getlocaldata()._id
@@ -145,8 +147,9 @@ const Buyerheader = ({ set }) => {
                             <li style={{ backgroundColor: navcolor('/buyer/orders').bg }}>
                                 <Link to='/buyer/orders' style={{ color: navcolor('/buyer/orders').text }}>My Orders</Link>
                             </li>
-                            <li style={{ backgroundColor: navcolor('/buyer/cart').bg }}>
+                            <li style={{ backgroundColor: navcolor('/buyer/cart').bg }} className='cartnav'>
                                 <Link to='/buyer/cart' style={{ color: navcolor('/buyer/cart').text }}>Cart</Link>
+                                <div className="cartcount" style={cartlength.length>0?{display:'flex'}:{display:'none'}}>{cartlength.length}</div>
                             </li>
 
                         </ul>

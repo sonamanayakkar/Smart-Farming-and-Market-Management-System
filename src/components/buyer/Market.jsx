@@ -10,12 +10,15 @@ import { topview } from '../topView/topview'
 import { autologout } from '../autologout/autoLogout.js'
 
 
-const Market = () => {
+const Market = ({headerRefresh}) => {
+   
+    
     let [isopen, setIsopen] = useState(false)
     let [cropdata, setCropdata] = useState([])
     let [alreadyexist, setAlreadyexist] = useState(false)
     let [filters, setFilters] = useState({ search: '', district: '' })
     let [addcart, setAddcart] = useState({ cropId: '', farmerId: '', cropName: '', farmerName: '', district: '', QTY: 1, priceAmount: 0, kg: 0, defaultamount: 0 })
+
 
 
 
@@ -154,6 +157,7 @@ const Market = () => {
                     customToast(response.message)
                 }
                 setIsopen(false)
+                headerRefresh(ele=>!ele)
 
                 setAddcart({ cropId: '', farmerId: '', cropName: '', farmerName: '', district: '', QTY: 1, priceAmount: 0, kg: 0, defaultamount: 0 })
 
@@ -270,7 +274,7 @@ const Market = () => {
 
                                         <div className="two">
                                             <div className="up d-flex gap-2 align-items-center">
-                                                <p>📍 trichy</p>
+                                                <p>📍 {ele.district}</p>
                                                 <p>📦 {ele.availableKG} kg available</p>
                                             </div>
                                             <p>{ele.description}</p>

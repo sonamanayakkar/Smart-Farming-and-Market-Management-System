@@ -120,6 +120,26 @@ header .dot{
     right: 0;
 }
 
+header .cartnav{
+    position: relative;
+}
+
+header .cartcount{
+    position: absolute;
+    width: 20px;
+    height: 20px ;
+    background-color: rgb(255, 145, 0);
+    border-radius: 50%;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: .9rem;
+}
+
 header .profile .name h5 {
     font-size: 1rem;
     font-weight: 500;
