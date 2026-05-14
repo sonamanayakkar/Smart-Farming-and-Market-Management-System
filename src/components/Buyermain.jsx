@@ -15,7 +15,7 @@ const Buyermain = () => {
     let [profileslide, setProfileslide] = useState(false)
     let [cartItems, setCartItems] = useState([])
     let [refresh, setRefresh] = useState(false)
-    console.log(cartItems);
+    
 
     useEffect(() => {
 
@@ -56,7 +56,7 @@ const Buyermain = () => {
             </Routes>
 
             {profileslide ? <Profile set={setProfileslide} /> : null}
-            <Buyerheader2 set={setProfileslide} />
+            <Buyerheader2 set={setProfileslide} cartlength={cartItems} />
 
 
         </div>

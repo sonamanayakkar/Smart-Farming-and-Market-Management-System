@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 const Buyerheader = ({ set,cartlength }) => {
 
-    console.log(cartlength);
+    
     
     let [notificationdot, setNotificationdot] = useState(false)
 

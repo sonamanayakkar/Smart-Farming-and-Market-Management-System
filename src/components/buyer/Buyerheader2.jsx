@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
-const Buyerheader2 = ({set}) => {
+const Buyerheader2 = ({set,cartlength}) => {
     const url = useLocation().pathname
    
     
@@ -31,11 +31,12 @@ const Buyerheader2 = ({set}) => {
                             <p className='m-0' style={{ color: bg('/buyer/orders') }}>My Orders</p>
                         </Link>
                     </li>
-                    <li>
+                    <li className='cartnav'>
                         <Link to='/buyer/cart' className='d-flex flex-column align-items-center'>
                             {/* <i className="fa-brands fa-pagelines"></i> */}
                             🛒
-                            <p className='m-0' style={{ color: bg('/buyer/cart') }}>Cart</p>
+                            <p className='m-0' style={{ color: bg('/buyer/cart') }} >Cart</p>
+                             <div className="cartcount" style={cartlength.length>0?{display:'flex'}:{display:'none'}}>{cartlength.length}</div>
                         </Link>
                     </li>
 
