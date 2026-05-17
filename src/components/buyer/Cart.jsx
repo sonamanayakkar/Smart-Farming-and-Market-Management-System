@@ -23,16 +23,15 @@ const Cart = ({ headerRefresh }) => {
 
     const cash = useRef()
     const upi = useRef()
-    const bank = useRef()
 
     let reset = () => {
         cash.current.style.background = 'none'
         upi.current.style.background = 'none'
-        bank.current.style.background = 'none'
+     
 
         cash.current.style.border = '1.6px solid rgb(197, 197, 197)'
         upi.current.style.border = '1.6px solid rgb(197, 197, 197)'
-        bank.current.style.border = '1.6px solid rgb(197, 197, 197)'
+      
 
 
     }
@@ -198,14 +197,14 @@ const Cart = ({ headerRefresh }) => {
         else if (inputs.street.length < 10) {
             errorobj.street = 'Give Detailed Address...'
         }
-        if (inputs.city=='') {
-             errorobj.city = 'Enter City/Town'
+        if (inputs.city == '') {
+            errorobj.city = 'Enter City/Town'
         }
         else if (inputs.city.length < 3) {
             errorobj.city = 'City name must be above 3 characters'
         }
-        if (inputs.pincode=='') {
-             errorobj.pincode = 'Enter  Pincode'
+        if (inputs.pincode == '') {
+            errorobj.pincode = 'Enter  Pincode'
         }
         else if (!/^[1-9][0-9]{5}$/.test(inputs.pincode)) {
             errorobj.pincode = 'Incorrect Pincode'
@@ -221,27 +220,145 @@ const Cart = ({ headerRefresh }) => {
 
         setErrors(errorobj)
 
-
         let addonorder = async () => {
+
             try {
-                const crop = await fetch(`${apicall()}orders`, {
-                    method: 'POST',
-                    headers: { "Content-type": "application/json", "Authorization": `Bearer ${getkey()}` },
-                    body: JSON.stringify(inputs)
 
-                })
+                if (inputs.paymentMethod == 'cash on delivery') {
+                    const crop = await fetch(`${apicall()}orders`, {
+                        method: 'POST',
+                        headers: { "Content-type": "application/json", "Authorization": `Bearer ${getkey()}` },
+                        body: JSON.stringify(inputs)
 
-                const response = await crop.json()
-                console.log(response.message);
-                Swal.fire({
-                    title: response.message,
-                    icon: "success",
-                    draggable: true
-                });
+                    })
 
-                setCross(false)
-                setCartItems(ele => !ele)
-                headerRefresh(ele => !ele)
+                    const response = await crop.json()
+                    console.log(response.message);
+
+                    Swal.fire({
+                        title: response.message,
+                        icon: "success",
+                        draggable: true
+                    });
+
+                    setCross(false)
+                    setCartItems(ele => !ele)
+                    headerRefresh(ele => !ele)
+
+                    return;
+                }
+
+                const crop1 = await fetch(`${apicall()}create-razorpay-order`, {
+                    method: "POST",
+                    headers: { "Content-type": "application/json", "Authorization": `Bearer ${getkey()}` }
+                }
+
+                );
+
+
+
+                const response1 = await crop1.json();
+              
+
+
+                const options = {
+
+                    key: "rzp_test_SqIpOxmVFAQsxS",
+
+                    amount: response1.order.amount,
+
+                    currency: response1.order.currency,
+
+                    name: "Agri Smart",
+
+                    description: "Test Payment",
+
+                    order_id: response1.order.id,
+
+                    handler: async function (paymentResponse) {
+
+                        const finalOrder =
+                            await fetch(
+
+                                `${apicall()}orders`,
+
+                                {
+                                    method: "POST",
+
+                                    headers: {
+
+                                        "Content-type":
+                                            "application/json",
+
+                                        "Authorization":
+                                            `Bearer ${getkey()}`
+
+                                    },
+
+                                    body: JSON.stringify({
+
+                                        ...inputs,
+
+                                        paymentMethod:
+                                            "ONLINE",
+
+                                        razorpayPaymentId:
+                                            paymentResponse
+                                                .razorpay_payment_id
+
+                                    })
+
+                                }
+
+                            );
+
+
+
+                        const finalResponse =
+                            await finalOrder.json();
+
+
+
+                        Swal.fire({
+
+                            title:
+                                finalResponse.message,
+
+                            icon:
+                                "success"
+
+                        });
+
+
+
+                        setCross(false);
+
+                        setCartItems(
+                            ele => !ele
+                        );
+
+                        headerRefresh(
+                            ele => !ele
+                        );
+
+                    },
+
+
+                    prefill: {
+                        name: "Sonu",
+                        email: "test@gmail.com",
+                        contact: "9999999999"
+                    },
+
+                    theme: {
+                        color: "#3399cc"
+                    }
+
+                };
+
+                const razor = new window.Razorpay(options);
+
+                razor.open();
 
             }
 
@@ -435,12 +552,12 @@ const Cart = ({ headerRefresh }) => {
                                 <div className="three d-flex gap-3 align-items-center mt-3" ref={upi} onClick={() => { bg(upi); setInputs({ ...inputs, paymentMethod: 'UPI Payment' }) }}>
                                     <h3>📱</h3>
                                     <div className="c">
-                                        <h5>UPI PAYMENT</h5>
-                                        <p className='m-0'>Pay via PhonePe / GPay ?paytm</p>
+                                        <h5>Online PAYMENT</h5>
+                                        <p className='m-0'>Pay via PhonePe / GPay ?paytm / Back Transfer</p>
                                     </div>
 
                                 </div>
-
+{/* 
                                 <div className="three d-flex gap-3 align-items-center mt-3" ref={bank} onClick={() => { bg(bank); setInputs({ ...inputs, paymentMethod: 'Bank Transfer' }) }}>
                                     <h3>🏦</h3>
                                     <div className="c">
@@ -448,7 +565,7 @@ const Cart = ({ headerRefresh }) => {
                                         <p className='m-0'>Direct Bank Transfer to farmer</p>
                                     </div>
 
-                                </div>
+                                </div> */}
 
                             </div>
                             <button type='submit' className='w-100'>✓ Place Order →</button>

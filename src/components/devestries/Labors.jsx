@@ -14,6 +14,7 @@ const Labors = () => {
     let [labourcost, setLabourcost] = useState({ length: 0, total: 0 })
     let [isCompleted, setIscompleted] = useState(false)
     let [refresh, setRefresh] = useState(false)
+    let [responssts, setResponsests] = useState(false)
     const { cropid } = useParams()
 
     const token = getkey()
@@ -21,6 +22,7 @@ const Labors = () => {
 
     let submit = (e) => {
         e.preventDefault()
+        setResponsests(true)
 
         if (!editid) {
             console.log('eleui');
@@ -34,6 +36,7 @@ const Labors = () => {
                     })
 
                     const response = await labour.json()
+                    setResponsests(false)
 
                     const customToast = (msg) => {
                         toast(({ closeToast }) => (
@@ -66,6 +69,28 @@ const Labors = () => {
                         headers: { "Content-type": "application/json", "Authorization": `Bearer ${token}` },
                         body: JSON.stringify(inputs)
                     })
+
+                    const response = await labour.json()
+
+                    setResponsests(false)
+
+                    const customToast = (msg) => {
+                        toast(({ closeToast }) => (
+                            <div className="flex justify-between items-center">
+                                <span>{msg}</span>
+                                {/* <button onClick={closeToast}>✖</button> */}
+                            </div>
+                        ), {
+                            style: {
+                                background: "linear-gradient(135deg, #028800, #cbf8c3)",
+                                color: "#fff"
+                            },
+                            autoClose: true
+                        });
+                    };
+                    if (response) {
+                        customToast('Labour Updated!')
+                    }
                 }
                 catch (error) {
 
@@ -75,12 +100,13 @@ const Labors = () => {
             setEditid(null)
         }
 
-        setRefresh(!refresh)
+        setRefresh(ele => !ele)
         setInputs({ date: new Date().toISOString().split("T")[0], labourName: '', salary: '' })
     }
 
 
     let remove = (id) => {
+
         let removedata = async () => {
             try {
                 const expence = await fetch(`${apicall()}crops/labour/delete/${cropid}`, {
@@ -107,7 +133,9 @@ const Labors = () => {
             confirmButtonText: "Yes, Remove this!"
         }).then(async (result) => {
             if (result.isConfirmed) {
+                setResponsests(true)
                 await removedata()
+                setResponsests(false)
                 setRefresh(prev => !prev)
                 Swal.fire({
                     title: "Deleted!",
@@ -189,7 +217,9 @@ const Labors = () => {
             confirmButtonText: "Yes, Add this!"
         }).then(async (result) => {
             if (result.isConfirmed) {
+                setResponsests(true)
                 await postdata()
+                setResponsests(false)
                 setRefresh(!refresh)
                 Swal.fire({
                     title: "Added!",
@@ -245,118 +275,128 @@ const Labors = () => {
 
 
     return (
-        <section className='container-fluid divestrysection '>
+        <>
+            <section className='container-fluid divestrysection '>
 
-            <div className="l mb-4">
-                <div className="up  bg-white text-dark" style={{ cursor: 'pointer' }}>
-                    <p className='m-0' onClick={divestry}>🌳 My Divestries</p>
-                </div>
-                <div className="up   " style={{ cursor: 'pointer' }}>
-                    <p className='m-0'>👷 Labour Attendance</p>
-                </div>
-            </div>
-
-
-            <div className="three2 py-3  mb-4">
-                <div className="u">
-                    <h3 className='fw-bold'>👷 Labour Attendance</h3>
-                    <p>Mark daily attendance and calculate salary</p>
-                </div>
-            </div>
-
-
-            <div className="three py-3  p-4 mb-4">
-                <h5 className='mb-3'>➕ Mark Attendance</h5>
-                <form className="row g-3 " onSubmit={submit}>
-                    <div className="col-md-3">
-
-                        <label htmlFor="inputEmail4" className="form-label">DATE</label>
-                        <input type="date" className="form-control" id="inputEmail4" required value={inputs.date} onChange={(e) => setInputs({ ...inputs, date: e.target.value })} style={isCompleted ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
+                <div className="l mb-4">
+                    <div className="up  bg-white text-dark" style={{ cursor: 'pointer' }}>
+                        <p className='m-0' onClick={divestry}>🌳 My Divestries</p>
                     </div>
-                    <div className="col-md-6">
-                        <label htmlFor="inputPassword4" className="form-label">LABOUR NAME</label>
-                        <input type="text" className="form-control" required id="inputPassword4" placeholder='e.g.Ravi kumar' value={inputs.labourName} onChange={(e) => setInputs({ ...inputs, labourName: e.target.value })} style={isCompleted ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
+                    <div className="up   " style={{ cursor: 'pointer' }}>
+                        <p className='m-0'>👷 Labour Attendance</p>
                     </div>
-                    <div className="col-md-3  d-flex gap-3 align-items-center">
-                        <div className="box">
-                            <label htmlFor="inputPassword4" className="form-label">DAILY SALARY (₹)</label>
-                            <input type="number" className="form-control" required id="inputPassword4" placeholder='e.g.350' value={inputs.salary} onChange={(e) => setInputs({ ...inputs, salary: e.target.value })} style={isCompleted ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
+                </div>
+
+
+                <div className="three2 py-3  mb-4">
+                    <div className="u">
+                        <h3 className='fw-bold'>👷 Labour Attendance</h3>
+                        <p>Mark daily attendance and calculate salary</p>
+                    </div>
+                </div>
+
+
+                <div className="three py-3  p-4 mb-4">
+                    <h5 className='mb-3'>➕ Mark Attendance</h5>
+                    <form className="row g-3 " onSubmit={submit}>
+                        <div className="col-md-3">
+
+                            <label htmlFor="inputEmail4" className="form-label">DATE</label>
+                            <input type="date" className="form-control" id="inputEmail4" required value={inputs.date} onChange={(e) => setInputs({ ...inputs, date: e.target.value })} style={isCompleted ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
+                        </div>
+                        <div className="col-md-6">
+                            <label htmlFor="inputPassword4" className="form-label">LABOUR NAME</label>
+                            <input type="text" className="form-control" required id="inputPassword4" placeholder='e.g.Ravi kumar' value={inputs.labourName} onChange={(e) => setInputs({ ...inputs, labourName: e.target.value })} style={isCompleted ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
+                        </div>
+                        <div className="col-md-3  d-flex gap-3 align-items-center">
+                            <div className="box">
+                                <label htmlFor="inputPassword4" className="form-label">DAILY SALARY (₹)</label>
+                                <input type="number" className="form-control" required id="inputPassword4" placeholder='e.g.350' value={inputs.salary} onChange={(e) => setInputs({ ...inputs, salary: e.target.value })} style={isCompleted ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
+                            </div>
+
+                            <button type="submit" className=" mt-4" style={isCompleted ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }}>+ Add</button>
+
                         </div>
 
-                        <button type="submit" className=" mt-4" style={isCompleted ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }}>+ Add</button>
-
-                    </div>
 
 
 
 
+                    </form>
 
-                </form>
-
-            </div>
-
+                </div>
 
 
-            <div className="table  mb-4">
-                <table>
-                    <thead>
+
+                <div className="table  mb-4">
+                    <table>
+                        <thead>
 
 
-                        <tr>
-                            <th>S. NO</th>
-                            <th>DATE</th>
-                            <th>NAME</th>
-                            <th>DAILY SALARY</th>
-                            <th >ACTION</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {labourdata && labourdata.length > 0 ? labourdata.map((ele, idx) => (
-                            <tr key={idx}>
-                                <td>{idx + 1}</td>
-                                <td>{ele.date}</td>
-                                <td>{ele.labourName}</td>
-                                <td>{ele.salary}</td>
-                                <td className='action  justify-content-center  align-items-center h-100'><i className="fa-solid fa-pencil me-2" onClick={() => update(ele)}></i> <i className="fa-solid fa-xmark" onClick={() => remove(ele._id)}></i> </td>
+                            <tr>
+                                <th>S. NO</th>
+                                <th>DATE</th>
+                                <th>NAME</th>
+                                <th>DAILY SALARY</th>
+                                <th >ACTION</th>
                             </tr>
-                        )) : (
-                            <tr >
-                                <td colSpan='5'>no data found</td>
+                        </thead>
+                        <tbody>
+                            {labourdata && labourdata.length > 0 ? labourdata.map((ele, idx) => (
+                                <tr key={idx}>
+                                    <td>{idx + 1}</td>
+                                    <td>{ele.date}</td>
+                                    <td>{ele.labourName}</td>
+                                    <td>{ele.salary}</td>
+                                    <td className='action  justify-content-center  align-items-center h-100'><i className="fa-solid fa-pencil me-2" onClick={() => update(ele)}></i> <i className="fa-solid fa-xmark" onClick={() => remove(ele._id)}></i> </td>
+                                </tr>
+                            )) : (
+                                <tr >
+                                    <td colSpan='5'>no data found</td>
 
-                            </tr>
-                        )}
+                                </tr>
+                            )}
 
 
 
 
 
-                    </tbody>
-                </table>
-            </div>
+                        </tbody>
+                    </table>
+                </div>
 
 
 
-            <div className="three py-3  p-4 mb-4 labourtotalsalary" style={labourdata.length > 0 ? { display: "block" } : { display: "none" }}>
-                <div className="u d-flex flex-lg-row flex-column justify-content-lg-between justify-content-center  align-items-center">
-                    <div className="l_side">
-                        <h5>💰 TOTAL LABOUR SALARY TO PAY</h5>
-                        <h1 className='text-center text-lg-start'>₹ {labourcost.total}</h1>
-                        <p>Present workers only · {labourcost.length} workers</p>
-                    </div>
-                    <div className="l_side d-flex flex-column justify-content-center align-items-lg-end">
-                        <p className='text-center'>Add this as Labour Cost
-                            to your Divestry expense</p>
+                <div className="three py-3  p-4 mb-4 labourtotalsalary" style={labourdata.length > 0 ? { display: "block" } : { display: "none" }}>
+                    <div className="u d-flex flex-lg-row flex-column justify-content-lg-between justify-content-center  align-items-center">
+                        <div className="l_side">
+                            <h5>💰 TOTAL LABOUR SALARY TO PAY</h5>
+                            <h1 className='text-center text-lg-start'>₹ {labourcost.total}</h1>
+                            <p>Present workers only · {labourcost.length} workers</p>
+                        </div>
+                        <div className="l_side d-flex flex-column justify-content-center align-items-lg-end">
+                            <p className='text-center'>Add this as Labour Cost
+                                to your Divestry expense</p>
 
-                        <button onClick={addtodivestry}><i className="fa-solid fa-arrow-right-long" ></i> Add to Divestry Expense</button>
+                            <button onClick={addtodivestry}><i className="fa-solid fa-arrow-right-long" ></i> Add to Divestry Expense</button>
+                        </div>
                     </div>
                 </div>
+
+
+
+
+
+            </section>
+
+            <div className="loader" style={{ display: responssts ? 'flex' : 'none' }}>
+                <div class="three-body">
+                    <div class="three-body__dot"></div>
+                    <div class="three-body__dot"></div>
+                    <div class="three-body__dot"></div>
+                </div>
             </div>
-
-
-
-
-
-        </section>
+        </>
     )
 }
 

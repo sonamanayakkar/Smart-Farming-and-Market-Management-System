@@ -24,6 +24,7 @@ const Divestries = () => {
 
     let [finalAmt, setFinalAmt] = useState({ totalExpences: 0, saleAmount: 0, amount: 0, percentage: 0, Isclosed: false })
     const { cropid } = useParams()  // get crop id from URL
+    let [responssts, setResponsests] = useState(false)
     let [green, setGreen] = useState(false)
 
     const token = getkey()
@@ -33,7 +34,7 @@ const Divestries = () => {
     let addexpenses = (e) => {
         e.preventDefault()
 
-
+        setResponsests(true)
 
         if (!editid) {
 
@@ -50,9 +51,10 @@ const Divestries = () => {
                         })
                     })
                     const response = await expence.json()
+                    setResponsests(false)
                     const data = response.response.expences
-                   
-                    
+
+
                     const customToast = (msg) => {
                         toast(({ closeToast }) => (
                             <div className="flex justify-between items-center">
@@ -69,6 +71,7 @@ const Divestries = () => {
                     };
                     if (response) {
                         customToast('Expense Added!')
+
                     }
 
 
@@ -98,8 +101,27 @@ const Divestries = () => {
                     })
                     const response = await expence.json()
                     const data = response.response.expences
+                    setResponsests(false)
+                    setrefresh(ele => !ele)
 
-                    setrefresh(!refresh)
+                    const customToast = (msg) => {
+                        toast(({ closeToast }) => (
+                            <div className="flex justify-between items-center">
+                                <span>{msg}</span>
+                                {/* <button onClick={closeToast}>✖</button> */}
+                            </div>
+                        ), {
+                            style: {
+                                background: "linear-gradient(135deg, #028800, #cbf8c3)",
+                                color: "#fff"
+                            },
+                            autoClose: true
+                        });
+                    };
+                    if (response) {
+                        customToast('Expense Updated!')
+
+                    }
 
                 } catch (error) {
 
@@ -117,6 +139,7 @@ const Divestries = () => {
     }
 
     let remove = (id) => {
+
         let removedata = async () => {
             try {
                 const expence = await fetch(`${apicall()}crops/profit/${cropid}/${id}`, {
@@ -130,6 +153,7 @@ const Divestries = () => {
 
 
                 setExpences(data)
+
 
             } catch (error) {
 
@@ -146,8 +170,10 @@ const Divestries = () => {
             confirmButtonText: "Yes, Remove this!"
         }).then(async (result) => {
             if (result.isConfirmed) {
+                setResponsests(true)
                 await removedata()
-                setrefresh(!refresh)
+                setResponsests(false)
+                setrefresh(ele => !ele)
                 Swal.fire({
                     title: "Deleted!",
                     text: "Expense deleted successfully.",
@@ -395,10 +421,13 @@ const Divestries = () => {
                         <div className="col-md-3  d-flex gap-3 align-items-center">
                             <div className="box">
                                 <label htmlFor="inputPassword4" className="form-label">Amount ( ₹ )</label>
-                                <input type="number" className="form-control" required id="inputPassword4" placeholder='e.g.Amount' value={inputs.amount} onChange={(e) => setInputs({ ...inputs, amount: e.target.value })} style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
+                                <div className="inputsss d-flex gap-2 align-items-center">
+                                    <input type="number" className="w-75 form-control" required id="inputPassword4" placeholder='e.g.Amount' value={inputs.amount} onChange={(e) => setInputs({ ...inputs, amount: e.target.value })} style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }} />
+                                    <button type="submit" className=" " style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }}>+ Add</button>
+                                </div>
                             </div>
 
-                            <button type="submit" className=" mt-4" style={finalAmt.Isclosed ? { pointerEvents: "none", opacity: 0.5 } : { pointerEvents: "auto", opacity: 1 }}>+ Add</button>
+
 
                         </div>
 
@@ -558,6 +587,16 @@ const Divestries = () => {
 
 
             </section>
+
+
+            <div className="loader" style={{ display: responssts ? 'flex' : 'none' }}>
+                <div class="three-body">
+                    <div class="three-body__dot"></div>
+                    <div class="three-body__dot"></div>
+                    <div class="three-body__dot"></div>
+                </div>
+            </div>
+
 
 
         </>

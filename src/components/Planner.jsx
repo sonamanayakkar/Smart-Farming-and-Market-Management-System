@@ -20,6 +20,7 @@ const Planner = () => {
     let [inputs, setInputs] = useState({ cropName: '', area: '', startDate: new Date().toISOString().split("T")[0] })
 
     let [crops, setCrops] = useState([])
+    let [responssts, setResponsests] = useState(false)
 
     const token = getkey()
 
@@ -29,7 +30,7 @@ const Planner = () => {
 
     let createdivestry = (e) => {
         e.preventDefault()
-
+        setResponsests(true)
 
         if (!editid) {
             let apipost = async () => {
@@ -47,7 +48,7 @@ const Planner = () => {
 
                 const response = await postingdata.json()
 
-
+                setResponsests(false)
 
                 const customToast = (msg) => {
                     toast(({ closeToast }) => (
@@ -87,6 +88,7 @@ const Planner = () => {
                 })
 
                 const response = await postingdata.json()
+                setResponsests(false)
                 Swal.fire({
                     title: response.message,
                     icon: "success",
@@ -99,7 +101,7 @@ const Planner = () => {
         }
 
 
-        setRefresh(!refresh)
+        setRefresh(ele => !ele)
 
 
 
@@ -139,11 +141,13 @@ const Planner = () => {
             confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
+                setResponsests(true)
                 await apipost()
+                setResponsests(false)
                 setRefresh(ele => !ele)
                 Swal.fire({
                     title: "Deleted!",
-                    text: "Your file has been deleted.",
+                    text: "Your Crop has been deleted.",
                     icon: "success"
                 });
             }
@@ -215,7 +219,7 @@ const Planner = () => {
         active: "green"
     };
 
-    
+
 
 
     return (
@@ -228,14 +232,14 @@ const Planner = () => {
                 </div>
 
                 <div className="nav2 mt-5 mb-3  d-flex flex-lg-row flex-wrap gap-3">
-                    <div className="up " style={{backgroundColor:'rgb(12, 131, 32)'}}>
+                    <div className="up " style={{ backgroundColor: 'rgb(12, 131, 32)' }}>
                         <Link to='/planner' style={{ textDecorationLine: 'none', color: 'white' }}> <p className='m-0   fw-bold'>🌳 My Divestries</p></Link>
                     </div>
-                    <div className="up  " style={{backgroundColor:'rgb(255, 255, 255)'}}>
+                    <div className="up  " style={{ backgroundColor: 'rgb(255, 255, 255)' }}>
                         <Link to='/croplist' style={{ textDecorationLine: 'none', color: 'rgb(0, 0, 0)' }}> <p className='m-0 fw-bold'>🏷️ List My Products</p></Link>
 
                     </div>
-                    <div className="up  " style={{backgroundColor:'rgb(255, 255, 255)'}}>
+                    <div className="up  " style={{ backgroundColor: 'rgb(255, 255, 255)' }}>
                         <Link to='/buyerOrders' style={{ textDecorationLine: 'none', color: 'rgb(0, 0, 0)' }}> <p className='m-0 fw-bold'>🗒️ Buyer Orders</p></Link>
 
                     </div>
@@ -244,7 +248,7 @@ const Planner = () => {
                 <div className="bottom ">
                     <div className="two  d-flex justify-content-between align-items-center">
                         <h4 className='fw-bold m-0'>🌾 ALL DIVESTRIES</h4>
-                        <button onClick={() => setCross(ele => false)}>+ New Divestries</button>
+                        <button onClick={() => setCross(ele => false)}>+ New Divesty</button>
                     </div>
                     <div className="two my-4">
                         <div className="container">
@@ -332,6 +336,14 @@ const Planner = () => {
 
                 </form>
 
+            </div>
+
+            <div className="loader" style={{ display: responssts ? 'flex' : 'none' }}>
+                <div class="three-body">
+                    <div class="three-body__dot"></div>
+                    <div class="three-body__dot"></div>
+                    <div class="three-body__dot"></div>
+                </div>
             </div>
         </>
     )

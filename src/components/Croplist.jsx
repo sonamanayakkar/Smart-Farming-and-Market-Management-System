@@ -14,12 +14,13 @@ const Croplist = () => {
     let [refresh, setRefresh] = useState(false)
     let [inputs, setInputs] = useState({ cropName: '', totalKG: 0, priceperkg: '', district: '', description: '' })
     let [cropLists, setCroplists] = useState([])
-
+    let [responssts, setResponsests] = useState(false)
     let [editid, setEditid] = useState(null)
 
 
     let submit = (e) => {
         e.preventDefault()
+        setResponsests(true)
 
         let postdata = async () => {
             try {
@@ -28,6 +29,9 @@ const Croplist = () => {
                     headers: { "Content-type": "application/json", "Authorization": `Bearer ${getkey()}` },
                     body: JSON.stringify({ cropName: inputs.cropName, totalKG: inputs.totalKG, priceperkg: inputs.priceperkg, district: inputs.district, description: inputs.description, availableKG: inputs.totalKG })
                 })
+
+                setResponsests(false)
+                setRefresh(ele => !ele)
             }
 
             catch (error) {
@@ -42,6 +46,9 @@ const Croplist = () => {
                     headers: { "Content-type": "application/json", "Authorization": `Bearer ${getkey()}` },
                     body: JSON.stringify({ cropName: inputs.cropName, totalKG: inputs.totalKG, priceperkg: inputs.priceperkg, district: inputs.district, description: inputs.description, availableKG: inputs.totalKG })
                 })
+
+                setResponsests(false)
+                setRefresh(ele => !ele)
             }
 
             catch (error) {
@@ -60,7 +67,7 @@ const Croplist = () => {
         }
 
 
-        setRefresh(ele => !ele)
+
         setIsopen(false)
 
     }
@@ -123,7 +130,9 @@ const Croplist = () => {
             confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
+                setResponsests(true)
                 await removedata()
+                setResponsests(false)
                 setRefresh(ele => !ele)
                 Swal.fire({
                     title: "Deleted!",
@@ -143,14 +152,14 @@ const Croplist = () => {
                 </div>
 
                 <div className="nav2 mt-5 mb-3 d-flex flex-wrap gap-3">
-                    <div className="up " style={{backgroundColor:'rgb(255, 255, 255)'}}>
+                    <div className="up " style={{ backgroundColor: 'rgb(255, 255, 255)' }}>
                         <Link to='/planner' style={{ textDecorationLine: 'none', color: 'rgb(0, 0, 0)' }}> <p className='m-0 fw-bold'>🌳 My Divestries</p></Link>
                     </div>
-                    <div className="up " style={{backgroundColor:'rgb(12, 131, 32)'}}>
+                    <div className="up " style={{ backgroundColor: 'rgb(12, 131, 32)' }}>
                         <Link to='/croplist' style={{ textDecorationLine: 'none', color: 'white' }}> <p className='m-0 fw-bold'>🏷️ List My Products</p></Link>
 
                     </div>
-                    <div className="up " style={{backgroundColor:'rgb(255, 255, 255)'}}>
+                    <div className="up " style={{ backgroundColor: 'rgb(255, 255, 255)' }}>
                         <Link to='/buyerOrders' style={{ textDecorationLine: 'none', color: 'rgb(0, 0, 0)' }}> <p className='m-0 fw-bold'>🗒️ Buyer Orders</p></Link>
 
                     </div>
@@ -165,7 +174,7 @@ const Croplist = () => {
                 </div>
 
                 <div className="bottom ">
-                   
+
                     <div className="two my-4">
                         <div className="container">
                             <div className="row row-cols-lg-3 row-cols-1">
@@ -352,6 +361,14 @@ const Croplist = () => {
 
                 </form>
 
+            </div>
+
+            <div className="loader" style={{ display: responssts ? 'flex' : 'none' }}>
+                <div class="three-body">
+                    <div class="three-body__dot"></div>
+                    <div class="three-body__dot"></div>
+                    <div class="three-body__dot"></div>
+                </div>
             </div>
         </>
     )

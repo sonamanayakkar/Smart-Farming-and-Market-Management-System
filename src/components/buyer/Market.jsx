@@ -10,9 +10,9 @@ import { topview } from '../topView/topview'
 import { autologout } from '../autologout/autoLogout.js'
 
 
-const Market = ({headerRefresh}) => {
-   
-    
+const Market = ({ headerRefresh }) => {
+
+
     let [isopen, setIsopen] = useState(false)
     let [cropdata, setCropdata] = useState([])
     let [alreadyexist, setAlreadyexist] = useState(false)
@@ -157,7 +157,7 @@ const Market = ({headerRefresh}) => {
                     customToast(response.message)
                 }
                 setIsopen(false)
-                headerRefresh(ele=>!ele)
+                headerRefresh(ele => !ele)
 
                 setAddcart({ cropId: '', farmerId: '', cropName: '', farmerName: '', district: '', QTY: 1, priceAmount: 0, kg: 0, defaultamount: 0 })
 
@@ -181,24 +181,23 @@ const Market = ({headerRefresh}) => {
     let setQuantity = (e) => {
         const positiveqty = Number(e.target.value)
 
-        if (positiveqty > 0) {
-
-            if (positiveqty <= addcart.kg) {
-                setAddcart({ ...addcart, QTY: Number(e.target.value), priceAmount: Number(e.target.value) * addcart.defaultamount })
-            }
-            else {
-                alert('ur exeed limit')
-                setAddcart({ ...addcart, QTY: addcart.QTY })
-            }
-
-
-
-        }
-        else {
-            setAddcart({ ...addcart, QTY: null })
+        if (positiveqty == '') {
+            setAddcart({ ...addcart, QTY: "", priceAmount: Number(e.target.value) * addcart.defaultamount })
+            return
         }
 
 
+        if (positiveqty <= 0) {
+
+            return;
+        }
+        if (positiveqty > addcart.kg) {
+            alert('ur exeed limit')
+            setAddcart({ ...addcart, QTY: addcart.QTY })
+            return
+        }
+
+        setAddcart({ ...addcart, QTY: Number(e.target.value), priceAmount: Number(e.target.value) * addcart.defaultamount })
 
     }
 
